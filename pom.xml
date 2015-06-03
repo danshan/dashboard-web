@@ -46,6 +46,9 @@
         <junit.version>4.8.1</junit.version>
         <spring-test.version>2.5.6</spring-test.version>
 
+        <!-- database -->
+        <morphia.version>0.99</morphia.version>
+
         <!-- maven -->
         <maven-resources-plugin.version>2.5</maven-resources-plugin.version>
         <maven-war-plugin.version>2.1-alpha-1</maven-war-plugin.version>
@@ -208,6 +211,20 @@
             <artifactId>spring-test</artifactId>
             <version>${spring-test.version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code</groupId>
+            <artifactId>morphia</artifactId>
+            <version>${morphia.version}</version>
+            <type>jar</type>
+            <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.mongodb</groupId>
+                    <artifactId>mongo-java-driver</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 

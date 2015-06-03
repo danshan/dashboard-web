@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="mongoDAOClient" class="com.dianping.wed.monitor.mongo.MongoDAOClient"></bean>
+	<bean id="mongo" factory-bean="mongoDAOClient" factory-method="getMongoInstance" class="com.mongodb.Mongo"></bean>
+	<bean id="morphia" factory-bean="mongoDAOClient" factory-method="getMorphiaInstance">
+		<constructor-arg index="0">
+			<list>
+				<value>com.dianping.wed.monitor.dao.entity.MonitorData</value>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="monitorDao" class="com.dianping.wed.monitor.dao.impl.MonitorDaoImpl">
+		<constructor-arg ref="mongo"></constructor-arg>
+		<constructor-arg ref="morphia"></constructor-arg>
+		<constructor-arg value="ShopProduct"></constructor-arg>
+	</bean>
+
+</beans>

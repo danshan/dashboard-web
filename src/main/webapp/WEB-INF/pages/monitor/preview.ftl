@@ -1,3 +1,4 @@
+<#include "/WEB-INF/pages/common/navbar.ftl" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,40 +18,15 @@
 </head>
 <body>
 
-<!-- header start -->
-<header class="navbar navbar-static-top" role="banner">
-    <div class="container">
-        <div class="navbar-header">
-            <button class="navbar-toggle collapsed" type="button" data-toggle="collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="/" class="navbar-brand">Monitor</a>
-        </div>
-        <nav class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="/css/">CSS</a>
-                </li>
-                <li class="active">
-                    <a href="/components/">Components</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="">Expo</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-<!-- header end -->
+<@navbar/>
 
 <!-- container start -->
 <div class="container-fluid">
     <div class="row-fluid">
         <div id="sidebar-code" class="col-md-4">
             <div class="well sidebar-nav">
+                <label for="J_datasource" class="col-sm-2 control-label">测试数据</label>
+                <input type="text" class="form-control" id="J_datasource" placeholder="/ajax/monitor/data?pageId=1">
                 <div class="nav-header"><a href="#" onclick="autoResize()" class="glyphicon glyphicon-resize-full" id ="icon-resize" ></a>option</div>
                     <textarea id="code" name="code">
 option = {
@@ -130,7 +106,12 @@ option = {
         <div id="graphic" class="col-md-8">
             <div id="main" class="main" style="height:400px"></div>
             <div>
-                <button type="button" class="btn btn-sm btn-success" onclick="refresh(true)">刷 新</button>
+                <button type="button" class="btn btn-sm btn-success" onclick="refresh(true)">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷 新
+                </button>
+                <button type="button" class="btn btn-sm btn-success" onclick="refresh(true)">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>保 存
+                </button>
                 <span id='wrong-message' style="color:red"></span>
             </div>
         </div><!--/span-->

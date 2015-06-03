@@ -1,10 +1,15 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Monitor</title>
 
-    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+    <script src="/static/js/jquery/jquery-1.11.3.js"></script>
+    <script src="/static/js/bootstrap/bootstrap.js"></script>
+    <script src="/static/js/echarts/echarts-2.2.3.js"></script>
 </head>
 <body>
 
@@ -65,9 +70,6 @@
 </div>
 <!-- container end -->
 
-<script src="/static/js/jquery-1.11.3.js"></script>
-<script src="/static/js/bootstrap.js"></script>
-<script src="/static/js/echarts/echarts-2.2.3.js"></script>
 <script type="text/javascript">
     // 路径配置
     require.config({
@@ -85,7 +87,7 @@
     }
 
     function loadData() {
-        $.getJSON('http://localhost:8080/ajax/monitor/data', function (data) {
+        $.getJSON('http://localhost:8080/ajax/monitor/data?pageId=1', function (data) {
             for (var optionIndex = 0; optionIndex < options.length; optionIndex++) {
                 for (var seriesIndex= 0; seriesIndex < options[optionIndex].series.length; seriesIndex++) {
                     options[optionIndex].series[seriesIndex].data = data.msg.data[seriesIndex];
@@ -117,3 +119,4 @@
 
 </script>
 </body>
+</html>

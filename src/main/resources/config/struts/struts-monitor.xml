@@ -9,6 +9,10 @@
             <result type="freemarker" name="success">/WEB-INF/pages/monitor/monitor.ftl</result>
         </action>
 
+        <action name="preview" class="com.dianping.wed.monitor.web.action.monitor.PreviewAction">
+            <result type="freemarker" name="success">/WEB-INF/pages/monitor/preview.ftl</result>
+        </action>
+
     </package>
 
     <package name="ajax_monitor" namespace="/ajax/monitor" extends="default">

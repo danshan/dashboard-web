@@ -1,6 +1,7 @@
 package com.dianping.wed.monitor.dao;
 
 import com.alibaba.fastjson.JSONObject;
+import com.dianping.wed.monitor.service.bean.MonitorQueryDTO;
 
 import java.util.List;
 
@@ -10,6 +11,6 @@ import java.util.List;
  */
 public interface MonitorDao {
 
-    public List<JSONObject> findByQuery(String collectionName, String query);
+    public List<JSONObject> findByQuery(String collectionName, MonitorQueryDTO query);
 
 }

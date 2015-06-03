@@ -23,10 +23,10 @@
         <nav class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="../css/">CSS</a>
+                    <a href="/css/">CSS</a>
                 </li>
                 <li class="active">
-                    <a href="../components/">Components</a>
+                    <a href="/components/">Components</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -56,7 +56,10 @@
 
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div>
-        <div id="chart_0" style="height:400px"></div>
+        <div id="chart_${pageId}" style="height:400px"></div>
+    </div>
+    <div>
+        <div id="table_${pageId}" style="height:400px"></div>
     </div>
 
 </div>
@@ -100,7 +103,7 @@
                 ],
                 function (ec) {
                     // 基于准备好的dom，初始化echarts图表
-                    var myChart = ec.init(document.getElementById('chart_0'));
+                    var myChart = ec.init(document.getElementById('chart_${pageId}'));
 
                     myChart.setOption(options[0]);
                 }

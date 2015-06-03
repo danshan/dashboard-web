@@ -1,13 +1,11 @@
 package com.dianping.wed.monitor.web.action.monitor;
 
-import com.dianping.wed.monitor.dao.MonitorDao;
 import com.dianping.wed.monitor.web.action.BaseAction;
 import com.dianping.wed.monitor.web.bean.monitor.InputFilter;
 import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -16,25 +14,17 @@ import java.util.List;
  */
 public class MonitorAction extends BaseAction {
 
-    @Setter
+    @Setter @Getter
     private int pageId;
 
     @Getter
     private List<InputFilter> inputFilters;
 
-    @Resource
-    private MonitorDao monitorDao;
-
     @Override
     protected String doExecute() throws Exception {
         this.inputFilters = fetchInputFilters();
-        this.demoMongo();
-        return SUCCESS;
-    }
 
-    private void demoMongo() {
-        String query = "";
-        System.out.println(monitorDao.findByQuery("OfflineEventUser", query));
+        return SUCCESS;
     }
 
     private List<InputFilter> fetchInputFilters() {

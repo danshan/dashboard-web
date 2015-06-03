@@ -9,4 +9,6 @@
         <property name="cacheService" ref="cacheService"/>
     </bean>
 
+    <bean id="monitorService" class="com.dianping.wed.monitor.service.impl.MonitorServiceImpl"/>
+
 </beans>

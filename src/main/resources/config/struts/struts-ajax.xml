@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <!--总ajax入口-->
+    <package name="common" namespace="/wed/ajax" extends="default">
+        <action name="ajaxRouterAction" class="com.dianping.wed.monitor.web.action.AjaxRouterAction">
+            <result name="success" type="chain">
+                <param name="namespace">${nameSpace}</param>
+                <param name="actionName">${actionName}</param>
+            </result>
+            <result name="error" type="json">
+                <param name="includeProperties">code,msg\..*</param>
+            </result>
+        </action>
+    </package>
+</struts>

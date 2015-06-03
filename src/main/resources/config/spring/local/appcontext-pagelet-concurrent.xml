@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="defaultExecutionManager" class="com.dianping.w3c.pagelet.DefaultExecutionManager" scope="prototype">
+		<property name="controller" ref="controller" />
+	</bean>
+
+	<bean id="concurrentExecutionManager" class="com.dianping.wed.monitor.web.other.DefaultConcurrentManager" scope="prototype">
+		<property name="executorService" ref="executorService" />
+		<property name="controller" ref="controller" />
+		<property name="traceEnabled" value="true" />
+	</bean>
+
+	<bean id="executorService" class="com.dianping.wed.monitor.web.other.ExecutorServiceFactoryBean">
+		<property name="corePoolSize" value="${shop-web.pagelet.threadPool.corePoolSize}" />
+		<property name="maximumPoolSize" value="${shop-web.pagelet.threadPool.maximumPoolSize}" />
+		<property name="keepAliveTime" value="${shop-web.pagelet.threadPool.keepAliveTime}" />
+		<property name="blockingQueueCapacity" value="${shop-web.pagelet.threadPool.blockingQueueCapacity}" />
+	</bean>
+
+
+
+</beans>

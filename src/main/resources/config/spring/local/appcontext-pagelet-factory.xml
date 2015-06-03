@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="springContext" class="com.dianping.w3c.pagelet.util.SpringContext" />
+
+    <bean id="pageletFactory" class="com.dianping.w3c.pagelet.PageletFactory">
+		<property name="autoDetect" value="true" />
+		<property name="basePackage" value="com.dianping.wed.monitor.web.pagelet" />
+	</bean>
+
+	<bean id="interceptorConfiguration" class="com.dianping.w3c.pagelet.interceptor.Configuration">
+		<property name="interceptorFactory" ref="interceptorFactory" />
+		<property name="mappingRules">
+			<map>
+				<entry key="com.dianping.wed.monitor.web.pagelet" value="error|exclusion|protect|trace|static_merge|context|business" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="mergeInteceptor" class="com.dianping.w3c.pagelet.interceptor.MergeInterceptor">
+		<property name="templateModelMerger" ref="templateModelMerger" />
+	</bean>
+
+	<bean id="errorInteceptor" class="com.dianping.wed.monitor.web.other.ExceptionInterceptor">
+	</bean>
+
+
+	<bean id="exclusionInteceptor" class="com.dianping.wed.monitor.web.other.ExclusionInterceptor">
+	</bean>
+	<bean id="contextInteceptor" class="com.dianping.wed.monitor.web.other.ContextInterceptor">
+	</bean>
+    <bean id="protectionInteceptor" class="com.dianping.wed.monitor.pagelet.AdvProtectionInterceptor">
+        <property name="mailService" ref="mailService" />
+    </bean>
+	<bean id="interceptorFactory" class="com.dianping.w3c.pagelet.interceptor.InterceptorFactory">
+		<property name="factory">
+			<map>
+				<entry key="static_merge" value-ref="mergeInteceptor" />
+				<entry key="error" value-ref="errorInteceptor" />
+				<entry key="exclusion" value-ref="exclusionInteceptor" />
+				<entry key="context" value-ref="contextInteceptor" />
+                <entry key="protect" value-ref="protectionInteceptor" />
+            </map>
+		</property>
+	</bean>
+
+
+	<bean id="templateModelMerger"
+		class="com.dianping.w3c.pagelet.template.freemarker.DefaultTemplateModelMerger">
+		<property name="staticModelClasses">
+			<list>
+				<value>com.dianping.combiz.support.staticfile.StaticFile</value>
+				<value>com.dianping.wed.monitor.util.StaticMethod</value>
+                <value>com.dianping.wed.monitor.util.PicUtil</value>
+            </list>
+		</property>
+	</bean>
+
+
+</beans>

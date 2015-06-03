@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         id="WebApp_ID" version="2.5">
+    <display-name>wed-monitor-web</display-name>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath*:config/spring/common/appcontext-*.xml,
+            classpath*:config/spring/local/appcontext-*.xml,
+            classpath*:config/spring/pagelet/appcontext-*.xml
+        </param-value>
+    </context-param>
+
+    <!--由Sprng载入的Log4j配置文件位置-->
+    <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>classpath:log/log4j.xml</param-value>
+    </context-param>
+
+    <!--Spring默认刷新Log4j配置文件的间隔,单位为毫秒-->
+    <context-param>
+        <param-name>log4jRefreshInterval</param-name>
+        <param-value>60000</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>webAppRootKey</param-name>
+        <param-value>wed-monitor-web.root</param-value>
+    </context-param>
+
+    <filter>
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>image-prepare-filter</filter-name>
+        <filter-class>com.dianping.piccentercloud.display.api.web.filter.ImagePrepareFilter</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>struts-prepare</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareFilter</filter-class>
+        <init-param>
+            <param-name>config</param-name>
+            <param-value>struts-default.xml,struts-plugin.xml,config/struts/struts.xml</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>sitemesh</filter-name>
+        <filter-class>com.dianping.combiz.web.sitemesh.ExtendedSiteMeshFilter</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>struts-execute</filter-name>
+        <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsExecuteFilter</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>cat-filter</filter-name>
+        <filter-class>com.dianping.cat.servlet.CatFilter</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>url-rewrite-filter</filter-name>
+        <filter-class>com.dianping.combiz.web.urlrewrite.ExtendedUrlRewriteFilter</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>biz-context-filter</filter-name>
+        <filter-class>com.dianping.combiz.web.filter.BizContextFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>url-rewrite-filter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>cat-filter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>image-prepare-filter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>cat-filter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>image-prepare-filter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>biz-context-filter</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>struts-prepare</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>sitemesh</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>struts-execute</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>JspSupportServlet</servlet-name>
+        <servlet-class>org.apache.struts2.views.JspSupportServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <servlet-name>errorHandlerServlet</servlet-name>
+        <servlet-class>com.dianping.combiz.web.errorhandle.ErrorHandlerServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>sitemesh-freemarker</servlet-name>
+        <servlet-class>com.opensymphony.module.sitemesh.freemarker.FreemarkerDecoratorServlet</servlet-class>
+        <init-param>
+            <param-name>TemplatePath</param-name>
+            <param-value>/</param-value>
+        </init-param>
+        <init-param>
+            <param-name>default_encoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>sitemesh-freemarker</servlet-name>
+        <url-pattern>*.ftl</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>errorHandlerServlet</servlet-name>
+        <url-pattern>/errorHandlerServlet.xfc</url-pattern>
+    </servlet-mapping>
+
+
+    <!--Spring log4j Config loader-->
+    <listener>
+        <listener-class>com.dianping.cat.servlet.CatListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+    </listener>
+    <!-- log 4j 4 spring end -->
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <listener>
+        <listener-class>org.apache.struts2.dispatcher.ng.listener.StrutsListener</listener-class>
+    </listener>
+    <error-page>
+        <exception-type>java.lang.Throwable</exception-type>
+        <location>/errorHandlerServlet.xfc</location>
+    </error-page>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/errorHandlerServlet.xfc</location>
+    </error-page>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>

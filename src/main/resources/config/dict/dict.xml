@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dicts>
+    <!-- avatar-biz中的常量 -->
+    <import file="classpath:/config/dict/combiz-dict.xml" />
+
+    <!-- 自定义 -->
+    <import file="classpath:/config/dict/dict-exception.xml" />
+</dicts>

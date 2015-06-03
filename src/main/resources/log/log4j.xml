@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//log4j/log4j Configuration//EN" "log4j.dtd">
+<log4j:configuration threshold="null" debug="null">
+	<appender name="CONSOLE" class="com.dianping.combiz.misc.ExtendedConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[wed-monitor-web]%d %-5p [%c %L] %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="avatarAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<!-- <param name="Threshold" value="INFO" /> -->
+		<param name="File" value="/data/applogs/${aritfactId}/logs/avatar.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[${aritfactId}]%d %-5p [%c %L] %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="appAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<!-- <param name="Threshold" value="INFO" /> -->
+		<param name="File" value="/data/applogs/wed-monitor-web/logs/app.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[${aritfactId}]%d %-5p [%c %L] %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="ibatisAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<!-- <param name="Threshold" value="INFO" /> -->
+		<param name="File" value="/data/applogs/${aritfactId}/logs/ibatis.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[${aritfactId}]%d %-5p [%c %L] %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="illegalAccessAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="/data/applogs/${aritfactId}/logs/illegalAccess.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[${aritfactId}]%d %-5p [%c %L] %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="illegalParameterAppender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="/data/applogs/${aritfactId}/logs/illegalParameter.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[${aritfactId}]%d %-5p [%c %L] %m%n" />
+		</layout>
+	</appender>
+
+
+	<appender name="catAppender" class="com.dianping.cat.log4j.CatAppender">
+	</appender>
+	
+	
+	<logger name="com.dianping.avatar" additivity="false">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="avatarAppender" />
+	</logger>
+
+	<logger name="com.ibatis" additivity="false">
+		<level value="WARN" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="ibatisAppender" />
+	</logger>
+
+	<logger name="java.sql">
+		<level value="WARN" />
+	</logger>
+	
+	<logger name="org.springframework.jms">
+		<level value="ERROR" />
+	</logger>
+	
+	<logger name="org.apache.activemq">
+		<level value="ERROR" />
+	</logger>
+	
+	<logger name="org.apache.struts2">
+		<level value="ERROR" />
+	</logger>
+	
+	<logger name="org.apache.struts2.dispatcher.Dispatcher"	additivity="false">
+		<level value="WARN" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="illegalAccessAppender" />
+	</logger>
+	
+	<logger name="com.opensymphony.xwork2.ognl.OgnlValueStack" additivity="false">
+		<level value="WARN" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="illegalParameterAppender" />
+	</logger>
+	<logger name="org.apache.http.client.protocol.ResponseProcessCookies" additivity="false">
+		<level value="ERROR" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+	
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="appAppender" />
+		<appender-ref ref="catAppender" />
+	</root>
+	
+</log4j:configuration>

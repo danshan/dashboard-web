@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dicts>
+
+    <category id="Exception.Message" desc="异常信息的资源文件">
+        <entry key="Error.message.shop.nullShop.title" value="商户不存在" />
+        <entry key="Error.message.shop.nullShop" value="您要查看的商户不存在，请从正确的链接进入。" />
+
+        <entry key="Error.message.review.wrongParams.title" value="参数错误" />
+        <entry key="Error.message.review.wrongParams" value="您要查看的链接错误，请从正确的链接进入。" />
+
+        <entry key="Error.message.review.nullReivew.title" value="点评不存在" />
+        <entry key="Error.message.review.nullReivew" value="您要查看的点评不存在，请从正确的链接进入。" />
+
+        <entry key="Error.message.shop.nullProduct.title" value="产品不存在" />
+        <entry key="Error.message.shop.nullProduct" value="您要查看的产品不存在，请从正确的链接进入。" />
+
+        <entry key="Error.message.shop.nullProductList.title" value="产品列表页不存在" />
+        <entry key="Error.message.shop.nullProductList" value="您要查看的产品列表页不存在，请从正确的链接进入。" />
+    </category>
+
+</dicts>

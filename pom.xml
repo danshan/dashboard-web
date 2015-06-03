@@ -1,0 +1,250 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>dianping-parent</artifactId>
+        <groupId>com.dianping</groupId>
+        <version>2.1.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.dianping</groupId>
+    <artifactId>wed-monitor-web</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <name>wed-monitor-web</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <env>qa</env>
+        <!-- dianping -->
+        <dp.platform-sdk.version>1.1.7</dp.platform-sdk.version>
+        <dp.cat.version>1.2.7</dp.cat.version>
+        <dp.lion-client.version>0.4.8</dp.lion-client.version>
+        <dp.file-queue.version>1.1.1</dp.file-queue.version>
+        <dp.dp-common-web.version>0.4.8</dp.dp-common-web.version>
+        <dp.contentverify-remote.version>1.0.0</dp.contentverify-remote.version>
+        <dp.mail-api.version>1.0.0</dp.mail-api.version>
+        <dp.shop-api.version>0.3.30.46</dp.shop-api.version>
+        <dp.sms-api.version>1.0.3</dp.sms-api.version>
+        <dp.piccenter-display-api.version>0.0.6</dp.piccenter-display-api.version>
+        <dp.gaia-widget.version>1.5.4-SNAPSHOT</dp.gaia-widget.version>
+        <dp.neocortex-4j.version>0.3.0</dp.neocortex-4j.version>
+
+        <dp.shopbusiness-api.version>1.0.0.0-SNAPSHOT</dp.shopbusiness-api.version>
+
+        <!-- struts -->
+        <struts.version>2.3.16.3</struts.version>
+
+        <!-- common -->
+        <commons-dbcp.version>1.4</commons-dbcp.version>
+        <ognl.version>3.0.5</ognl.version>
+
+        <!-- pagelet -->
+        <w3c.pagelet.version>2.1.1-SNAPSHOT</w3c.pagelet.version>
+
+        <!-- test -->
+        <junit.version>4.8.1</junit.version>
+        <spring-test.version>2.5.6</spring-test.version>
+
+        <!-- maven -->
+        <maven-resources-plugin.version>2.5</maven-resources-plugin.version>
+        <maven-war-plugin.version>2.1-alpha-1</maven-war-plugin.version>
+    </properties>
+
+    <dependencies>
+        <!-- dianping -->
+        <dependency>
+            <groupId>com.dianping.platform</groupId>
+            <artifactId>platform-sdk</artifactId>
+            <version>${dp.platform-sdk.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.dianping.lion</groupId>
+                    <artifactId>lion-client</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.dianping.cat</groupId>
+                    <artifactId>cat-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.dianping.cat</groupId>
+                    <artifactId>cat-client</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.dianping.cat</groupId>
+            <artifactId>cat-core</artifactId>
+            <version>${dp.cat.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dianping.lion</groupId>
+            <artifactId>lion-client</artifactId>
+            <version>${dp.lion-client.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dianping</groupId>
+            <artifactId>file-queue</artifactId>
+            <version>${dp.file-queue.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dianping</groupId>
+            <artifactId>dp-common-web</artifactId>
+            <version>${dp.dp-common-web.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.dianping.lion</groupId>
+                    <artifactId>lion-client</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.dianping</groupId>
+            <artifactId>contentverify-remote</artifactId>
+            <version>${dp.contentverify-remote.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dianping</groupId>
+            <artifactId>mail-api</artifactId>
+            <version>${dp.mail-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dianping</groupId>
+            <artifactId>shop-api</artifactId>
+            <version>${dp.shop-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dianping</groupId>
+            <artifactId>sms-api</artifactId>
+            <version>${dp.sms-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dianping.piccentercloud</groupId>
+            <artifactId>piccenter-display-api</artifactId>
+            <version>${dp.piccenter-display-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dianping</groupId>
+            <artifactId>gaia-widget</artifactId>
+            <version>${dp.gaia-widget.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dianping.neocortex</groupId>
+            <artifactId>neocortex-4j</artifactId>
+            <version>${dp.neocortex-4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dianping</groupId>
+            <artifactId>shopbusiness-api</artifactId>
+            <version>${dp.shopbusiness-api.version}</version>
+        </dependency>
+
+        <!-- struts -->
+        <dependency>
+            <groupId>org.apache.struts.xwork</groupId>
+            <artifactId>xwork-core</artifactId>
+            <version>${struts.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-core</artifactId>
+            <version>${struts.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-spring-plugin</artifactId>
+            <version>${struts.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-json-plugin</artifactId>
+            <version>${struts.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-javatemplates-plugin</artifactId>
+            <version>${struts.version}</version>
+        </dependency>
+
+        <!-- common -->
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>${commons-dbcp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ognl</groupId>
+            <artifactId>ognl</artifactId>
+            <version>${ognl.version}</version>
+        </dependency>
+
+        <!-- servlet -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jsp-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
+
+        <!-- pagelet -->
+        <dependency>
+            <groupId>com.dianping</groupId>
+            <artifactId>w3c-pagelet</artifactId>
+            <version>${w3c.pagelet.version}</version>
+        </dependency>
+
+        <!-- test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring-test.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <filters>
+            <filter>src/main/filters/wizard-config-${env}.properties</filter>
+        </filters>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven-resources-plugin.version}</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven-war-plugin.version}</version>
+                <configuration>
+                    <warName>wed-monitor-web-${env}-1.0-SNAPSHOT</warName>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

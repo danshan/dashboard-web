@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <package name="monitor" namespace="/monitor" extends="default">
+
+        <action name="monitor" class="com.dianping.wed.monitor.web.action.monitor.MonitorAction">
+            <result type="freemarker" name="success">/WEB-INF/pages/monitor/monitor.ftl</result>
+        </action>
+
+    </package>
+
+    <package name="ajax_monitor" namespace="/ajax/monitor" extends="default">
+
+        <action name="options" class="com.dianping.wed.monitor.web.action.monitor.ajax.OptionsJsonAction">
+            <result type="json">
+                <param name="excludeNullProperties">true</param>
+                <param name="ignoreHierarchy">false</param>
+                <param name="includeProperties">code,msg\..*</param>
+            </result>
+        </action>
+
+        <action name="data" class="com.dianping.wed.monitor.web.action.monitor.ajax.DataJsonAction">
+            <result type="json">
+                <param name="excludeNullProperties">true</param>
+                <param name="ignoreHierarchy">false</param>
+                <param name="includeProperties">code,msg\..*</param>
+            </result>
+        </action>
+
+    </package>
+</struts>

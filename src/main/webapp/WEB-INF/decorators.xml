@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<decorators defaultdir="/WEB-INF/decorators">
+    <!-- Any urls that are excluded will never be decorated by Sitemesh -->
+    <excludes>
+    	<!-- index.jsp used for F5 check -->
+    	<pattern>/index.jsp</pattern>
+        <pattern>/*</pattern>
+        <!-- url为/shop/data/都不需要 页头 -->
+    </excludes>
+    
+    <decorator name="centralized">
+    	<pattern>/*</pattern>
+    </decorator>
+
+</decorators>

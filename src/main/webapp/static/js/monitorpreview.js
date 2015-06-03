@@ -114,9 +114,12 @@ function refresh(isBtnRefresh){
     }
     myChart = echarts.init(domMain, curTheme);
     window.onresize = myChart.resize;
-    (new Function(editor.doc.getValue()))();
-    myChart.setOption(option, true)
-    domMessage.innerHTML = '';
+    try {
+        (new Function(editor.doc.getValue()))();
+        myChart.setOption(option, true)
+    } catch (e) {
+        domMessage.innerHTML = e;
+    }
 }
 
 function needMap() {
@@ -143,7 +146,6 @@ function launchExample() {
         return;
     }
 
-    // æŒ‰éœ€åŠ è½½
     isExampleLaunched = 1;
     require(
         [

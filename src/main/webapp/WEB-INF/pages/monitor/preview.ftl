@@ -25,7 +25,7 @@
     <div class="row-fluid">
         <div id="sidebar-code" class="col-md-4">
             <div class="well sidebar-nav">
-                <label for="J_datasource" class="col-sm-2 control-label">测试数据</label>
+                <label class="control-label">测试数据</label>
                 <input type="text" class="form-control" id="J_datasource" placeholder="/ajax/monitor/data?pageId=1">
                 <div class="nav-header"><a href="#" onclick="autoResize()" class="glyphicon glyphicon-resize-full" id ="icon-resize" ></a>option</div>
                     <textarea id="code" name="code">

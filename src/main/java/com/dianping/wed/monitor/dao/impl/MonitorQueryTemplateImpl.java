@@ -5,7 +5,8 @@ import com.dianping.wed.monitor.dao.entity.MonitorQueryTemplate;
 import com.google.code.morphia.Morphia;
 import com.google.code.morphia.dao.BasicDAO;
 import com.mongodb.Mongo;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author dan.shan
@@ -13,7 +14,7 @@ import org.apache.log4j.Logger;
  */
 public class MonitorQueryTemplateImpl extends BasicDAO<MonitorQueryTemplate, String> implements MonitorQueryTemplateDao {
 
-    private static final Logger logger = Logger.getLogger(MonitorQueryTemplateImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(MonitorQueryTemplateImpl.class);
 
     protected MonitorQueryTemplateImpl(Mongo mongo, Morphia morphia, String dbName) {
         super(mongo, morphia, dbName);

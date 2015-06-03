@@ -18,9 +18,9 @@
 <!-- container start -->
 <div class="container">
     <!-- input filter start -->
-    <#if inputFilters?has_content>
+    <#if pageConfig.inputFilters?has_content>
         <div class="form-inline">
-            <#list inputFilters as filter>
+            <#list pageConfig.inputFilters as filter>
                 <div class="form-group">
                     <label for="ID_${filter.name}">${filter.desc}</label>
                     <input id="ID_${filter.name}" type="text" class="form-control" dataname="${filter.name}">

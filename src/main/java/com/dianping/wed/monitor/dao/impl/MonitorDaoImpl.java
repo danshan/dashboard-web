@@ -3,7 +3,6 @@ package com.dianping.wed.monitor.dao.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.dianping.wed.monitor.dao.MonitorDao;
 import com.dianping.wed.monitor.dao.entity.MonitorData;
-import com.dianping.wed.monitor.dao.entity.MonitorQueryTemplate;
 import com.dianping.wed.monitor.service.bean.MonitorQueryDTO;
 import com.google.code.morphia.Morphia;
 import com.google.code.morphia.dao.BasicDAO;
@@ -12,7 +11,8 @@ import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.Mongo;
 import com.mongodb.util.JSON;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class MonitorDaoImpl extends BasicDAO<MonitorData, String> implements MonitorDao {
 
-    private static final Logger logger = Logger.getLogger(MonitorDaoImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(MonitorDaoImpl.class);
 
     protected MonitorDaoImpl(Mongo mongo, Morphia morphia, String dbName) {
         super(mongo, morphia, dbName);

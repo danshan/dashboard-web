@@ -2,9 +2,12 @@ package com.dianping.wed.monitor.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dianping.wed.monitor.dao.MonitorDao;
+import com.dianping.wed.monitor.dao.MonitorPageConfigDao;
 import com.dianping.wed.monitor.dao.MonitorQueryTemplateDao;
+import com.dianping.wed.monitor.dao.entity.MonitorPageConfig;
 import com.dianping.wed.monitor.dao.entity.MonitorQueryTemplate;
 import com.dianping.wed.monitor.service.MonitorService;
+import com.dianping.wed.monitor.service.bean.MonitorPageConfigDTO;
 import com.dianping.wed.monitor.service.bean.MonitorQueryDTO;
 import com.dianping.wed.monitor.util.BeanListUtil;
 import com.google.common.collect.Lists;
@@ -30,6 +33,8 @@ public class MonitorServiceImpl implements MonitorService {
     private MonitorDao monitorDao;
     @Resource
     private MonitorQueryTemplateDao monitorQueryTemplateDao;
+    @Resource
+    private MonitorPageConfigDao monitorPageConfigDao;
 
     @Override
     public List<List<String>> findDataByQuery(String collectionName, MonitorQueryDTO query) {
@@ -60,5 +65,15 @@ public class MonitorServiceImpl implements MonitorService {
     public MonitorQueryDTO renderQuery(MonitorQueryDTO queryTemplate, Map<String, String> filterMap) {
         // TODO 渲染
         return queryTemplate;
+    }
+
+    @Override
+    public MonitorPageConfigDTO loadPageConfigByPageId(int pageId) {
+        MonitorPageConfig config = monitorPageConfigDao.loadConfigByPageId(pageId);
+        if (config == null) {
+            return new MonitorPageConfigDTO();
+        }
+
+        return BeanListUtil.copyProperties(config, MonitorPageConfigDTO.class);
     }
 }

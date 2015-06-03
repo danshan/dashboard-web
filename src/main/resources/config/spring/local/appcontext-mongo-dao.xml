@@ -11,6 +11,7 @@
 			<list>
 				<value>com.dianping.wed.monitor.dao.entity.MonitorData</value>
 				<value>com.dianping.wed.monitor.dao.entity.MonitorQueryTemplate</value>
+				<value>com.dianping.wed.monitor.dao.entity.MonitorPageConfig</value>
 			</list>
 		</constructor-arg>
 	</bean>
@@ -27,4 +28,9 @@
 		<constructor-arg value="ShopProduct"></constructor-arg>
 	</bean>
 
+	<bean id="monitorPageConfigDao" class="com.dianping.wed.monitor.dao.impl.MonitorPageConfigDaoImpl">
+		<constructor-arg ref="mongo"></constructor-arg>
+		<constructor-arg ref="morphia"></constructor-arg>
+		<constructor-arg value="ShopProduct"></constructor-arg>
+	</bean>
 </beans>

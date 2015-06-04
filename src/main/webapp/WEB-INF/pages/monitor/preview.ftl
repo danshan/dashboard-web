@@ -120,6 +120,7 @@ option = {
 </div><!--/.fluid-container-->
 <!-- container end -->
 
+<script src="/static/js/chartfactory.js"></script>
 <script src="/static/js/monitorpreview.js"></script>
 </body>
 </html>

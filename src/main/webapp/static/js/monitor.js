@@ -19,7 +19,7 @@ function drawChart(option, pageId) {
         function (ec) {
             // 基于准备好的dom，初始化echarts图表
             var myChart = ec.init(document.getElementById('chart_' + pageId));
-            myChart.setOption(chartOption);
+            myChart.setOption(chartOption, false);
         }
     );
 }
@@ -48,7 +48,7 @@ function drawTable(datamap, pageId) {
     var tbody = table.find("tbody");
 }
 
-var chartOption = loadOptions(buildOptionApi(chartData.pageId));
+var chartOption = loadOption(buildOptionApi(chartData.pageId));
 var datamap = loadData(buildDataApi(chartData.pageId));
 var option = buildOption(chartOption, datamap);
 drawChart(option, chartData.pageId);

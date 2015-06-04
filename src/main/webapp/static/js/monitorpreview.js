@@ -103,6 +103,7 @@ editor.setOption("theme", 'monokai');
 editor.on('change', function(){needRefresh = true;});
 
 function refresh(isBtnRefresh){
+    domMessage.innerHTML = '';
     if (isBtnRefresh) {
         needRefresh = true;
         focusGraphic();
@@ -116,7 +117,10 @@ function refresh(isBtnRefresh){
     window.onresize = myChart.resize;
     try {
         (new Function(editor.doc.getValue()))();
-        myChart.setOption(option, true)
+        var dataapi = $("#J_dataapi").val();
+        var datamap = loadData(dataapi);
+        var mergedOption = buildOption(option, datamap);
+        myChart.setOption(mergedOption);
     } catch (e) {
         domMessage.innerHTML = e;
     }

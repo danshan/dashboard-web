@@ -6,7 +6,7 @@ function buildOptionApi(pageId) {
     return 'http://localhost:8080/ajax/monitor/options?pageId=' + pageId;
 }
 
-function loadOptions(optionapi) {
+function loadOption(optionapi) {
     var result;
     var ajaxOption = {
         type: "GET",
@@ -67,7 +67,12 @@ function buildOption(chartOption, datamap) {
     var datalist = datamap.data;
 
     chartOption.legend.data = columns.slice(1);
-    chartOption.xAxis.data = fetchDataByColumn(datalist, 0);
+    if (chartOption.xAxis instanceof Array) {
+        chartOption.xAxis[0].data = fetchDataByColumn(datalist, 0);
+    } else {
+        chartOption.xAxis.data = fetchDataByColumn(datalist, 0);
+    }
+
     for (var i = 0; i < chartOption.series.length; i++) {
         chartOption.series[i].name = columns[i + 1];
         chartOption.series[i].data = fetchDataByColumn(datalist, i + 1);

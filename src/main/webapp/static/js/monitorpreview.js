@@ -135,6 +135,11 @@ function needMap() {
 
 }
 
+function checkDataApi() {
+    var dataapi = $("#J_dataapi").val();
+    window.open(dataapi);
+}
+
 var echarts;
 // for echarts online home page
 require.config({

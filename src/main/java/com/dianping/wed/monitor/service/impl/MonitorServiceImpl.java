@@ -2,12 +2,15 @@ package com.dianping.wed.monitor.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dianping.wed.monitor.dao.MonitorDao;
+import com.dianping.wed.monitor.dao.MonitorOptionDao;
 import com.dianping.wed.monitor.dao.MonitorPageConfigDao;
 import com.dianping.wed.monitor.dao.MonitorQueryTemplateDao;
+import com.dianping.wed.monitor.dao.entity.MonitorOption;
 import com.dianping.wed.monitor.dao.entity.MonitorPageConfig;
 import com.dianping.wed.monitor.dao.entity.MonitorQueryTemplate;
 import com.dianping.wed.monitor.service.MonitorService;
 import com.dianping.wed.monitor.service.bean.MonitorDataDTO;
+import com.dianping.wed.monitor.service.bean.MonitorOptionDTO;
 import com.dianping.wed.monitor.service.bean.MonitorPageConfigDTO;
 import com.dianping.wed.monitor.service.bean.MonitorQueryDTO;
 import com.dianping.wed.monitor.util.BeanListUtil;
@@ -36,6 +39,8 @@ public class MonitorServiceImpl implements MonitorService {
     private MonitorQueryTemplateDao monitorQueryTemplateDao;
     @Resource
     private MonitorPageConfigDao monitorPageConfigDao;
+    @Resource
+    private MonitorOptionDao monitorOptionDao;
 
     @Override
     public MonitorDataDTO findDataByQuery(String collectionName, MonitorQueryDTO query) {
@@ -96,4 +101,14 @@ public class MonitorServiceImpl implements MonitorService {
 
         return BeanListUtil.copyProperties(config, MonitorPageConfigDTO.class);
     }
+
+    @Override
+    public MonitorOptionDTO loadOptionByPageId(int pageId) {
+        MonitorOption option = monitorOptionDao.loadOptionByPageId(pageId);
+        if (option == null) {
+            return new MonitorOptionDTO();
+        }
+        return BeanListUtil.copyProperties(option, MonitorOptionDTO.class);
+    }
+
 }

@@ -26,7 +26,10 @@
         <div id="sidebar-code" class="col-md-4">
             <div class="well sidebar-nav">
                 <label class="control-label">测试数据</label>
-                <input type="text" class="form-control" id="J_dataapi" value="/ajax/monitor/data?pageId=1">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="J_dataapi" value="/ajax/monitor/data?pageId=1">
+                    <div type="button" class="input-group-addon" onclick="checkDataApi()">Check</div>
+                </div>
                 <div class="nav-header"><a href="#" onclick="autoResize()" class="glyphicon glyphicon-resize-full" id ="icon-resize" ></a>option</div>
                     <textarea id="code" name="code">
 option = {
@@ -38,7 +41,7 @@ option = {
         trigger: 'axis'
     },
     legend: {
-        data:['最高气温','最低气温']
+        data:[]
     },
     toolbox: {
         show : true,
@@ -55,7 +58,7 @@ option = {
         {
             type : 'category',
             boundaryGap : false,
-            data : ['周一','周二','周三','周四','周五','周六','周日']
+            data : []
         }
     ],
     yAxis : [
@@ -70,7 +73,7 @@ option = {
         {
             name:'最高气温',
             type:'line',
-            data:[11, 11, 15, 13, 12, 13, 10],
+            data:[],
             markPoint : {
                 data : [
                     {type : 'max', name: '最大值'},
@@ -86,7 +89,7 @@ option = {
         {
             name:'最低气温',
             type:'line',
-            data:[1, -2, 2, 5, 3, 2, 0],
+            data:[],
             markPoint : {
                 data : [
                     {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}

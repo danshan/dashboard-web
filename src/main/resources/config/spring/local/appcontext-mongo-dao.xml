@@ -33,4 +33,10 @@
 		<constructor-arg ref="morphia"></constructor-arg>
 		<constructor-arg value="ShopProduct"></constructor-arg>
 	</bean>
+
+	<bean id="monitorOptionDao" class="com.dianping.wed.monitor.dao.impl.MonitorOptionDaoImpl">
+		<constructor-arg ref="mongo"></constructor-arg>
+		<constructor-arg ref="morphia"></constructor-arg>
+		<constructor-arg value="ShopProduct"></constructor-arg>
+	</bean>
 </beans>

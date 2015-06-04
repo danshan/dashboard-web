@@ -8,32 +8,7 @@ require.config({
     }
 });
 
-var option,
-    datalist = [],
-    columns = [];
-
-function loadOptions(pageId) {
-    $.getJSON('http://localhost:8080/ajax/monitor/options?pageId=' + pageId, function (data) {
-        option = data.msg.option;
-        if (option != undefined && columns.length > 0) {
-            drawChart(pageId);
-            drawTable(pageId);
-        }
-    });
-}
-
-function loadData(pageId) {
-    $.getJSON('http://localhost:8080/ajax/monitor/data?pageId=' + pageId, function (data) {
-        columns = data.msg.columns;
-        datalist = data.msg.data;
-        if (option != undefined && columns.length > 0) {
-            drawChart(pageId);
-            drawTable(pageId);
-        }
-    });
-}
-
-function drawChart(pageId) {
+function drawChart(option, pageId) {
     // 使用
     require(
         [
@@ -44,22 +19,18 @@ function drawChart(pageId) {
         function (ec) {
             // 基于准备好的dom，初始化echarts图表
             var myChart = ec.init(document.getElementById('chart_' + pageId));
-
-            option.legend.data = columns.slice(1);
-            option.xAxis.data = fetchDataByColumn(0);
-            for (var i = 0; i < option.series.length; i++) {
-                option.series[i].name = columns[i + 1];
-                option.series[i].data = fetchDataByColumn(i + 1);
-            }
-            myChart.setOption(option);
+            myChart.setOption(chartOption);
         }
     );
 }
 
-function drawTable(pageId) {
+function drawTable(datamap, pageId) {
+    var datalist = datamap.data;
+    var columns = datamap.columns;
     var table = $("#table_" + pageId);
+
     var html = "<thead><tr>";
-    for (var i in columns) {
+    for (var i in datamap.columns) {
         html += "<th>" + columns[i] + "</th>";
     }
     html += "</tr></thead>";
@@ -74,17 +45,11 @@ function drawTable(pageId) {
     html += "</tbody>";
     table.get(0).innerHTML = html;
 
-
     var tbody = table.find("tbody");
 }
 
-function fetchDataByColumn(columnIndex) {
-    var list = [];
-    for (var i = 0; i < datalist.length; i++) {
-        list.push(datalist[i][columnIndex]);
-    }
-    return list;
-}
-
-loadOptions(chartData.pageId);
-loadData(chartData.pageId);
+var chartOption = loadOptions(buildOptionApi(chartData.pageId));
+var datamap = loadData(buildDataApi(chartData.pageId));
+var option = buildOption(chartOption, datamap);
+drawChart(option, chartData.pageId);
+drawTable(datamap, chartData.pageId);

@@ -46,6 +46,7 @@
         pageId: ${pageId}
     };
 </script>
+<script src="/static/js/chartfactory.js"></script>
 <script src="/static/js/monitor.js"></script>
 </body>
 </html>

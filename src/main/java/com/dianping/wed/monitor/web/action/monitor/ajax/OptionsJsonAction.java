@@ -3,6 +3,8 @@ package com.dianping.wed.monitor.web.action.monitor.ajax;
 import com.dianping.wed.monitor.web.action.AjaxBaseAction;
 import com.dianping.wed.monitor.web.bean.monitor.Option;
 import com.google.common.collect.Lists;
+import lombok.Setter;
+import org.springframework.util.Assert;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,17 +16,19 @@ import java.util.Map;
  */
 public class OptionsJsonAction extends AjaxBaseAction {
 
+    @Setter
+    private int pageId;
+
     @Override
     protected int doAjaxExecute(Map<String, Object> result) throws Exception {
-        List<Option> options = buildOptions();
+        Assert.isTrue(pageId > 0, "page id should be positive number.");
+        Option option = buildOption();
 
-        getMsg().put("options", options);
+        getMsg().put("option", option);
         return CODE_SUCCESS;
     }
 
-    private List<Option> buildOptions() {
-        List<Option> options = Lists.newLinkedList();
-
+    private Option buildOption() {
         Option option = new Option();
 
         Option.Title title = new Option.Title();
@@ -37,26 +41,28 @@ public class OptionsJsonAction extends AjaxBaseAction {
         option.setTooltip(tooltip);
 
         Option.Legend legend = new Option.Legend();
-        legend.getData().add("最高气温");
-        legend.getData().add("最低气温");
+        legend.getData().add("line1");
+        legend.getData().add("line2");
         option.setLegend(legend);
 
         Option.XAxis xAxis = new Option.XAxis();
         xAxis.setType("category");
-        xAxis.getData().addAll(Arrays.asList("周一", "周二", "周三", "周四", "周五", "周六", "周日"));
         option.setXAxis(xAxis);
 
         Option.YAxis yAxis= new Option.YAxis();
         yAxis.setType("value");
         option.setYAxis(yAxis);
 
-        Option.Series series = new Option.Series();
-        series.setName("最高气温");
-        series.setType("line");
-        option.getSeries().add(series);
+        Option.Series series1 = new Option.Series();
+        series1.setName("line1");
+        series1.setType("line");
+        option.getSeries().add(series1);
+        Option.Series series2 = new Option.Series();
+        series2.setName("line2");
+        series2.setType("bar");
+        option.getSeries().add(series2);
 
-        options.add(option);
-        return options;
+        return option;
     }
 
 }

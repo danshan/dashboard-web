@@ -12,5 +12,6 @@ public class MonitorQueryDTO {
     private int pageId;
     private String query;
     private String keys;
+    private String columnName;
 
 }

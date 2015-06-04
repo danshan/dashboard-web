@@ -44,52 +44,10 @@
 <!-- container end -->
 
 <script type="text/javascript">
-    // 路径配置
-    require.config({
-        paths: {
-            echarts: '/static/js/echarts'
-        }
-    });
-
-    var options = [];
-
-    function loadOptions() {
-        $.getJSON('http://localhost:8080/ajax/monitor/options', function (data) {
-            options = data.msg.options;
-        });
-    }
-
-    function loadData() {
-        $.getJSON('http://localhost:8080/ajax/monitor/data?pageId=1', function (data) {
-            for (var optionIndex = 0; optionIndex < options.length; optionIndex++) {
-                for (var seriesIndex= 0; seriesIndex < options[optionIndex].series.length; seriesIndex++) {
-                    options[optionIndex].series[seriesIndex].data = data.msg.data[seriesIndex];
-                }
-            }
-        });
-    }
-
-    function buildChart() {
-        // 使用
-        require(
-                [
-                    'echarts',
-                    'echarts/chart/line' // 使用柱状图就加载bar模块，按需加载
-                ],
-                function (ec) {
-                    // 基于准备好的dom，初始化echarts图表
-                    var myChart = ec.init(document.getElementById('chart_${pageId}'));
-
-                    myChart.setOption(options[0]);
-                }
-
-        );
-    }
-
-    loadOptions();
-    loadData();
-    buildChart();
-
+    chartData = {
+        pageId: ${pageId}
+    };
 </script>
+<script src="/static/js/monitor.js"></script>
 </body>
 </html>

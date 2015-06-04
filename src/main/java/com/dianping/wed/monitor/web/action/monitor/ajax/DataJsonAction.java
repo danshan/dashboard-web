@@ -1,6 +1,7 @@
 package com.dianping.wed.monitor.web.action.monitor.ajax;
 
 import com.dianping.wed.monitor.service.MonitorService;
+import com.dianping.wed.monitor.service.bean.MonitorDataDTO;
 import com.dianping.wed.monitor.service.bean.MonitorQueryDTO;
 import com.dianping.wed.monitor.web.action.AjaxBaseAction;
 import com.google.common.collect.Lists;
@@ -32,23 +33,24 @@ public class DataJsonAction extends AjaxBaseAction {
     protected int doAjaxExecute(Map<String, Object> result) throws Exception {
         Assert.isTrue(pageId > 0, "page id should by positive number.");
 
-        List<List<String>> dataList = fetchData();
+        MonitorDataDTO dataDTO = fetchData();
 
         List<Object> data = Lists.newLinkedList();
         data.add(Arrays.asList(11, 11, 15, 13, 12, 13, 10));
 
-        getMsg().put("data", data);
+        getMsg().put("data", dataDTO.getData());
+        getMsg().put("columns", dataDTO.getColumns());
 
         return CODE_SUCCESS;
     }
 
-    private List<List<String>> fetchData() {
+    private MonitorDataDTO fetchData() {
         Map<String, String> filterMap = parseFilters();
         MonitorQueryDTO query = monitorService.loadQueryTemplateByPageId(this.pageId);
         query = monitorService.renderQuery(query, filterMap);
 
-        List<List<String>> dataList = monitorService.findDataByQuery("OfflineEventUser", query);
-        return null;
+        MonitorDataDTO dataDTO = monitorService.findDataByQuery("Event", query);
+        return dataDTO;
     }
 
     private Map<String, String> parseFilters() {

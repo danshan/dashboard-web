@@ -27,8 +27,10 @@ public class MonitorQueryTemplateImpl extends BasicDAO<MonitorQueryTemplate, Str
         //TODO
         MonitorQueryTemplate template = new MonitorQueryTemplate();
         template.setPageId(pageId);
-        template.setQuery("{\"offlineActivityId\": 3013162}");
-        template.setKeys("{\"userRole\":1, \"userId\":1}");
+        // template.setQuery("{\"eventId\": 16}");
+        template.setQuery("{}");
+        template.setKeys("{\"eventId\":1, \"pcUrlRewriteID\": 1, \"mUrlRewriteID\": 1}");
+        template.setColumnName("eventId");
         return template;
     }
 

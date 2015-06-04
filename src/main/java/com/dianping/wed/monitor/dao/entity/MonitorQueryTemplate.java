@@ -18,5 +18,6 @@ public class MonitorQueryTemplate {
     private int pageId;
     private String query;
     private String keys;
+    private String columnName;
 
 }

@@ -1,5 +1,6 @@
 package com.dianping.wed.monitor.service;
 
+import com.dianping.wed.monitor.service.bean.MonitorDataDTO;
 import com.dianping.wed.monitor.service.bean.MonitorPageConfigDTO;
 import com.dianping.wed.monitor.service.bean.MonitorQueryDTO;
 
@@ -12,7 +13,7 @@ import java.util.Map;
  */
 public interface MonitorService {
 
-    public List<List<String>> findDataByQuery(String collectionName, MonitorQueryDTO query);
+    public MonitorDataDTO findDataByQuery(String collectionName, MonitorQueryDTO query);
 
     public MonitorQueryDTO loadQueryTemplateByPageId(int pageId);
 

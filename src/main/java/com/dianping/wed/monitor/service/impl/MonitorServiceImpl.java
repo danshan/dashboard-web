@@ -7,6 +7,7 @@ import com.dianping.wed.monitor.dao.MonitorQueryTemplateDao;
 import com.dianping.wed.monitor.dao.entity.MonitorPageConfig;
 import com.dianping.wed.monitor.dao.entity.MonitorQueryTemplate;
 import com.dianping.wed.monitor.service.MonitorService;
+import com.dianping.wed.monitor.service.bean.MonitorDataDTO;
 import com.dianping.wed.monitor.service.bean.MonitorPageConfigDTO;
 import com.dianping.wed.monitor.service.bean.MonitorQueryDTO;
 import com.dianping.wed.monitor.util.BeanListUtil;
@@ -17,9 +18,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author dan.shan
@@ -37,18 +38,37 @@ public class MonitorServiceImpl implements MonitorService {
     private MonitorPageConfigDao monitorPageConfigDao;
 
     @Override
-    public List<List<String>> findDataByQuery(String collectionName, MonitorQueryDTO query) {
+    public MonitorDataDTO findDataByQuery(String collectionName, MonitorQueryDTO query) {
         Assert.notNull(query, "query should not be empty");
         Assert.isTrue(StringUtils.isNotBlank(query.getQuery()), "query.query should not be empty");
         Assert.isTrue(StringUtils.isNotBlank(query.getKeys()), "query.keys should not be empty");
+        Assert.isTrue(StringUtils.isNotBlank(query.getColumnName()), "query.columnName should not be empty");
         Assert.isTrue(StringUtils.isNotBlank(collectionName), "collection name should not be empty");
 
         List<JSONObject> list = monitorDao.findByQuery(collectionName, query);
-        List<String> result = Lists.newLinkedList();
-        JSONObject keys = JSONObject.parseObject(query.getKeys());
+
+        MonitorDataDTO dataDTO = new MonitorDataDTO();
+        List<String> columns = Lists.newLinkedList();
+        List<List<String>> data = Lists.newLinkedList();
+
+        columns.addAll(getMongoKeys(query.getKeys()));
+        columns.remove(query.getColumnName());
+        columns.add(0, query.getColumnName());
+
         for (JSONObject jsonObject : list) {
+            List<String> row = Lists.newLinkedList();
+            for (String key : columns) {
+                row.add(jsonObject.getString(key));
+            }
+            data.add(row);
         }
-        return new LinkedList<List<String>>();
+        dataDTO.setData(data);
+        dataDTO.setColumns(columns);
+        return dataDTO;
+    }
+
+    private Set<String> getMongoKeys(String keysStr) {
+        return JSONObject.parseObject(keysStr).keySet();
     }
 
     @Override

@@ -32,17 +32,14 @@ public class MonitorPageConfigDaoImpl extends BasicDAO<MonitorPageConfig, String
         config.setPageId(pageId);
 
         List<MonitorPageConfig.InputFilter> inputFilterList = Lists.newLinkedList();
-        MonitorPageConfig.InputFilter filter1 = new MonitorPageConfig.InputFilter();
-        filter1.setDesc("开始日期");
-        filter1.setName("startDate");
-        inputFilterList.add(filter1);
-
-        MonitorPageConfig.InputFilter filter2 = new MonitorPageConfig.InputFilter();
-        filter2.setName("endDate");
-        filter2.setDesc("结束日期");
-        inputFilterList.add(filter2);
+        MonitorPageConfig.InputFilter filter = new MonitorPageConfig.InputFilter();
+        filter.setDesc("活动ID");
+        filter.setName("eventId");
+        inputFilterList.add(filter);
 
         config.setInputFilters(inputFilterList);
+        config.setTimeFilter("addDate");
+
         return config;
     }
 }

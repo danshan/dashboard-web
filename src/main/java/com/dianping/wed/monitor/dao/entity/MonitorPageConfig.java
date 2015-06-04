@@ -22,6 +22,8 @@ public class MonitorPageConfig {
     private int pageId;
     /** 可选搜索条件 */
     private List<InputFilter> inputFilters;
+    /** 时间筛选条件, 如果该列不为空, 那么页面应该有针对dateFilter的startTime和endTime筛选功能 */
+    private String timeFilter;
 
     @Data
     public static final class InputFilter {

@@ -8,6 +8,12 @@ require.config({
     }
 });
 
+$('.input-daterange').datepicker({
+    format: "yyyy-mm-dd",
+    clearBtn: true,
+    todayHighlight: true
+});
+
 function drawChart(option, pageId) {
     // 使用
     require(
@@ -46,6 +52,30 @@ function drawTable(datamap, pageId) {
     table.get(0).innerHTML = html;
 
     var tbody = table.find("tbody");
+}
+
+
+function refresh(isBtnRefresh){
+    if (isBtnRefresh) {
+        needRefresh = true;
+        focusGraphic();
+        return;
+    }
+    needRefresh = false;
+    if (myChart && myChart.dispose) {
+        myChart.dispose();
+    }
+    myChart = echarts.init(domMain, curTheme);
+    window.onresize = myChart.resize;
+    try {
+        (new Function(editor.doc.getValue()))();
+        var dataapi = $("#J_dataapi").val();
+        var datamap = loadData(dataapi);
+        var mergedOption = buildOption(option, datamap);
+        myChart.setOption(mergedOption);
+    } catch (e) {
+        domMessage.innerHTML = e;
+    }
 }
 
 var chartOption = loadOption(buildOptionApi(chartData.pageId));

@@ -35,9 +35,6 @@ public class DataJsonAction extends AjaxBaseAction {
 
         MonitorDataDTO dataDTO = fetchData();
 
-        List<Object> data = Lists.newLinkedList();
-        data.add(Arrays.asList(11, 11, 15, 13, 12, 13, 10));
-
         getMsg().put("data", dataDTO.getData());
         getMsg().put("columns", dataDTO.getColumns());
 

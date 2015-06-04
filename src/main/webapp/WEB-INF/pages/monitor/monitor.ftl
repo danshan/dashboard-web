@@ -33,11 +33,9 @@
     <!-- input filter end -->
 
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div>
-        <div id="chart_${pageId}" style="height:400px"></div>
-    </div>
-    <div>
-        <div id="table_${pageId}" style="height:400px"></div>
+    <div id="chart_${pageId}" style="height:400px"></div>
+    <div style="height:400px">
+        <table id="table_${pageId}" class="table table-condensed"/>
     </div>
 
 </div>

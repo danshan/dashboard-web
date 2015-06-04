@@ -17,6 +17,7 @@ function loadOptions(pageId) {
         option = data.msg.option;
         if (option != undefined && columns.length > 0) {
             drawChart(pageId);
+            drawTable(pageId);
         }
     });
 }
@@ -27,6 +28,7 @@ function loadData(pageId) {
         datalist = data.msg.data;
         if (option != undefined && columns.length > 0) {
             drawChart(pageId);
+            drawTable(pageId);
         }
     });
 }
@@ -52,6 +54,28 @@ function drawChart(pageId) {
             myChart.setOption(option);
         }
     );
+}
+
+function drawTable(pageId) {
+    var table = $("#table_" + pageId);
+    var html = "<thead><tr>";
+    for (var i in columns) {
+        html += "<th>" + columns[i] + "</th>";
+    }
+    html += "</tr></thead>";
+    html += "<tbody>";
+    for (var i in datalist) {
+        html += "<tr>";
+        for (var j in datalist[i]) {
+            html += "<td>" + datalist[i][j] + "</td>";
+        }
+        html += "</tr>";
+    }
+    html += "</tbody>";
+    table.get(0).innerHTML = html;
+
+
+    var tbody = table.find("tbody");
 }
 
 function fetchDataByColumn(columnIndex) {

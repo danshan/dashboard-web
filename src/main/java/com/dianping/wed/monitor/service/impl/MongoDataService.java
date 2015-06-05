@@ -8,6 +8,7 @@ import com.dianping.wed.monitor.dao.entity.MongoDataQuery;
 import com.dianping.wed.monitor.service.MonitorDataService;
 import com.dianping.wed.monitor.service.bean.MonitorDataDTO;
 import com.dianping.wed.monitor.service.bean.MonitorQueryTemplateDTO;
+import com.dianping.wed.monitor.util.StringTemplateUtil;
 import com.google.common.collect.Lists;
 import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
@@ -29,7 +30,7 @@ public abstract class MongoDataService implements MonitorDataService {
 
     public abstract void setMonitorDataMongoDao(MonitorDataMongoDao monitorDataMongoDao);
 
-    protected MongoDataQuery renderQuery(MonitorQueryTemplateDTO queryTemplateDTO, Map<String, String> filterMap) {
+    private MongoDataQuery renderQuery(MonitorQueryTemplateDTO queryTemplateDTO, Map<String, String> filterMap) {
         Assert.notNull(queryTemplateDTO, "query template should not be null.");
         Assert.isTrue(StringUtils.isNotBlank(queryTemplateDTO.getQuery()), "query.query should not be blank");
 
@@ -40,13 +41,17 @@ public abstract class MongoDataService implements MonitorDataService {
          */
         String queryStr = "[" + queryTemplateDTO.getQuery() + "]";
         JSONArray queryArr = JSON.parseArray(queryStr);
-        query.setQuery(queryArr.getJSONObject(0).toJSONString());
+        query.setQuery(renderQuery(queryArr.getJSONObject(0).toJSONString(), filterMap));
         if (queryArr.size() > 1) {
             query.setKeys(queryArr.getJSONObject(1).toJSONString());
         }
         query.setCollectionName(queryTemplateDTO.getCollectionName());
 
         return query;
+    }
+
+    private String renderQuery(String query, Map<String, String> filterMap) {
+        return StringTemplateUtil.replaceTemplateTag(query, filterMap);
     }
 
     @Override

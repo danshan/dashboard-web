@@ -20,14 +20,15 @@
 <div class="container">
     <!-- input filter start -->
     <#if pageConfig.inputFilters?has_content || pageConfig.timeFilter?has_content>
+    <div class="J_form">
         <div class="form-inline">
             <#if pageConfig.timeFilter?has_content>
                 <div class="form-group">
                     <label for="J_datepicker">时间范围</label>
                     <div class="input-daterange input-group" id="J_datepicker">
-                        <input type="text" class="input-sm form-control" name="ID_${pageConfig.timeFilter}" />
+                        <input type="text" class="input-sm form-control" readonly="readonly" name="timeFilterStart" />
                         <span class="input-group-addon">to</span>
-                        <input type="text" class="input-sm form-control" name="end" />
+                        <input type="text" class="input-sm form-control" readonly="readonly" name="timeFilterEnd" />
                     </div>
                 </div>
             </#if>
@@ -36,16 +37,18 @@
             <#if pageConfig.inputFilters?has_content>
                 <#list pageConfig.inputFilters as filter>
                     <div class="form-group">
-                        <label for="ID_${filter.name}">${filter.desc}</label>
-                        <input id="ID_${filter.name}" type="text" class="input-sm form-control">
+                        <label for="id_${filter.name}">${filter.desc}</label>
+                        <input id="id_${filter.name}" type="text" class="input-sm form-control" name="${filter.name}">
                     </div>
                 </#list>
             </#if>
         </div>
         <button type="button" class="btn btn-sm btn-success" onclick="refresh(true)">查询</button>
+    </div>
     </#if>
     <!-- input filter end -->
 
+    <p id='wrong-message' style="color:red"></p>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div id="chart_${pageId}" style="height:400px"></div>
     <div style="height:400px">

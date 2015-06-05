@@ -14,26 +14,19 @@ $('.input-daterange').datepicker({
     todayHighlight: true
 });
 
-function drawChart(option, pageId) {
-    // 使用
-    require(
-        [
-            'echarts',
-            'echarts/chart/line', // 使用柱状图就加载bar模块，按需加载
-            'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
-        ],
-        function (ec) {
-            // 基于准备好的dom，初始化echarts图表
-            var myChart = ec.init(document.getElementById('chart_' + pageId));
-            myChart.setOption(chartOption, false);
-        }
-    );
+var needRefresh = false;
+var myChart;
+var echarts;
+var domMessage = document.getElementById('wrong-message');
+
+function drawChart(option) {
+    myChart.setOption(option, false);
 }
 
-function drawTable(datamap, pageId) {
+function drawTable(datamap) {
     var datalist = datamap.data;
     var columns = datamap.columns;
-    var table = $("#table_" + pageId);
+    var table = $("#table_" + chartData.pageId);
 
     var html = "<thead><tr>";
     for (var i in datamap.columns) {
@@ -51,11 +44,29 @@ function drawTable(datamap, pageId) {
     html += "</tbody>";
     table.get(0).innerHTML = html;
 
-    var tbody = table.find("tbody");
 }
 
+function focusGraphic() {
+    if (needRefresh) {
+        myChart.showLoading();
+        setTimeout(refresh, 1000);
+    }
+}
+
+function fetchFilters() {
+    var params = "";
+    $(".J_form input[type='text']").each(function(index, input) {
+        var input = $(input);
+        if (input.val().trim().length > 0) {
+            params += input.attr("name") + ':' + input.val().trim() + ',';
+        }
+    });
+    return params;
+}
 
 function refresh(isBtnRefresh){
+    domMessage.innerHTML = '';
+    var filters = fetchFilters();
     if (isBtnRefresh) {
         needRefresh = true;
         focusGraphic();
@@ -65,21 +76,62 @@ function refresh(isBtnRefresh){
     if (myChart && myChart.dispose) {
         myChart.dispose();
     }
-    myChart = echarts.init(domMain, curTheme);
+    myChart = echarts.init(document.getElementById('chart_' + chartData.pageId));
     window.onresize = myChart.resize;
     try {
-        (new Function(editor.doc.getValue()))();
-        var dataapi = $("#J_dataapi").val();
+        var chartOption = loadOption(buildOptionApi(chartData.pageId));
+        var datamap = loadData(buildDataApi(chartData.pageId, filters));
+        var option = buildOption(chartOption, datamap);
+        drawChart(option);
+        drawTable(datamap);
+        /*
         var datamap = loadData(dataapi);
         var mergedOption = buildOption(option, datamap);
         myChart.setOption(mergedOption);
+        */
     } catch (e) {
         domMessage.innerHTML = e;
     }
 }
 
-var chartOption = loadOption(buildOptionApi(chartData.pageId));
-var datamap = loadData(buildDataApi(chartData.pageId));
-var option = buildOption(chartOption, datamap);
-drawChart(option, chartData.pageId);
-drawTable(datamap, chartData.pageId);
+launchMonitor();
+
+function requireCallback (ec) {
+    echarts = ec;
+    refresh();
+    window.onresize = myChart.resize;
+}
+
+var isMonitorLaunched;
+function launchMonitor() {
+    if (isMonitorLaunched) {
+        return;
+    }
+
+    isMonitorLaunched = 1;
+    require(
+        [
+            'echarts',
+            'echarts/chart/line',
+            'echarts/chart/bar',
+            'echarts/chart/scatter',
+            /*
+            'echarts/chart/k',
+            'echarts/chart/pie',
+            'echarts/chart/radar',
+            'echarts/chart/force',
+            'echarts/chart/chord',
+            'echarts/chart/gauge',
+            'echarts/chart/funnel',
+            'echarts/chart/eventRiver',
+            'echarts/chart/venn',
+            'echarts/chart/treemap',
+            'echarts/chart/tree',
+            'echarts/chart/wordCloud'
+            */
+        ],
+        requireCallback
+    );
+}
+
+

@@ -1,5 +1,5 @@
-function buildDataApi(pageId) {
-    return 'http://localhost:8080/ajax/monitor/data?pageId=' + pageId;
+function buildDataApi(pageId, filters) {
+    return 'http://localhost:8080/ajax/monitor/data?pageId=' + pageId + "&filters=" + filters;
 }
 
 function buildOptionApi(pageId) {

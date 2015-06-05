@@ -12,60 +12,11 @@ hash = hash.replace('#','') || (needMap() ? 'default' : 'macarons');
 hash += enVersion ? '-en' : '';
 
 var curTheme;
-function requireCallback (ec, defaultTheme) {
-    curTheme = themeSelector ? defaultTheme : {};
+function requireCallback (ec) {
+    curTheme = {};
     echarts = ec;
     refresh();
     window.onresize = myChart.resize;
-}
-
-var themeSelector = $('#theme-select');
-if (themeSelector) {
-    themeSelector.html(
-        '<option selected="true" name="macarons">macarons</option>'
-        + '<option name="infographic">infographic</option>'
-        + '<option name="shine">shine</option>'
-        + '<option name="dark">dark</option>'
-        + '<option name="blue">blue</option>'
-        + '<option name="green">green</option>'
-        + '<option name="red">red</option>'
-        + '<option name="gray">gray</option>'
-        + '<option name="helianthus">helianthus</option>'
-        + '<option name="roma">roma</option>'
-        + '<option name="mint">mint</option>'
-        + '<option name="macarons2">macarons2</option>'
-        + '<option name="sakura">sakura</option>'
-        + '<option name="default">default</option>'
-    );
-    $(themeSelector).on('change', function(){
-        selectChange($(this).val());
-    });
-    function selectChange(value){
-        var theme = value;
-        myChart.showLoading();
-        $(themeSelector).val(theme);
-        if (theme != 'default') {
-            window.location.hash = value + (enVersion ? '-en' : '');
-            require(['theme/' + theme], function(tarTheme){
-                curTheme = tarTheme;
-                setTimeout(refreshTheme, 500);
-            })
-        }
-        else {
-            window.location.hash = enVersion ? '-en' : '';
-            curTheme = {};
-            setTimeout(refreshTheme, 500);
-        }
-    }
-    function refreshTheme(){
-        myChart.hideLoading();
-        myChart.setTheme(curTheme);
-    }
-    if ($(themeSelector).val(hash.replace('-en', '')).val() != hash.replace('-en', '')) {
-        $(themeSelector).val('macarons');
-        hash = 'macarons' + enVersion ? '-en' : '';
-        window.location.hash = hash;
-    }
 }
 
 function autoResize() {
@@ -95,7 +46,10 @@ function focusGraphic() {
 
 var editor = CodeMirror.fromTextArea(
     document.getElementById("code"),
-    { lineNumbers: true }
+    {
+        mode: "text/javascript",
+        lineNumbers: true
+    }
 );
 editor.setOption("theme", 'monokai');
 

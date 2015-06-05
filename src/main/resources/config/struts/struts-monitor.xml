@@ -9,8 +9,11 @@
             <result type="freemarker" name="success">/WEB-INF/pages/monitor/monitor.ftl</result>
         </action>
 
-        <action name="preview" class="com.dianping.wed.monitor.web.action.monitor.PreviewAction">
-            <result type="freemarker" name="success">/WEB-INF/pages/monitor/preview.ftl</result>
+        <action name="datapreview" class="com.dianping.wed.monitor.web.action.monitor.PreviewDataAction">
+            <result type="freemarker" name="success">/WEB-INF/pages/monitor/datapreview.ftl</result>
+        </action>
+        <action name="optionpreview" class="com.dianping.wed.monitor.web.action.monitor.PreviewOptionAction">
+            <result type="freemarker" name="success">/WEB-INF/pages/monitor/optionpreview.ftl</result>
         </action>
 
     </package>

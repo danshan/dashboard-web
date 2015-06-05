@@ -30,8 +30,10 @@
                     <input type="text" class="form-control" id="J_dataapi" value="/ajax/monitor/data?pageId=1">
                     <div type="button" class="input-group-addon" onclick="checkDataApi()">Check</div>
                 </div>
-                <div class="nav-header"><a href="#" onclick="autoResize()" class="glyphicon glyphicon-resize-full" id ="icon-resize" ></a>option</div>
-                    <textarea id="code" name="code">
+                <div class="nav-header">
+                    <a href="#" onclick="autoResize()" class="glyphicon glyphicon-resize-full" id ="icon-resize" ></a>option
+                </div>
+                <textarea id="code" name="code">
 option = {
     title : {
         text: '未来一周气温变化',
@@ -103,7 +105,7 @@ option = {
         }
     ]
 };
-                    </textarea>
+                </textarea>
             </div><!--/.well -->
         </div><!--/span-->
         <div id="graphic" class="col-md-8">
@@ -124,6 +126,6 @@ option = {
 <!-- container end -->
 
 <script src="/static/js/chartfactory.js"></script>
-<script src="/static/js/monitorpreview.js"></script>
+<script src="/static/js/optionpreview.js"></script>
 </body>
 </html>

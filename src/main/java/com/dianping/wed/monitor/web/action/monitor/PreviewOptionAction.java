@@ -6,7 +6,7 @@ import com.dianping.wed.monitor.web.action.BaseAction;
  * @author dan.shan
  * @since 2015-06-03 15:23
  */
-public class PreviewAction extends BaseAction {
+public class PreviewOptionAction extends BaseAction {
     @Override
     protected String doExecute() throws Exception {
         return SUCCESS;

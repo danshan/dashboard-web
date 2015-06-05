@@ -14,7 +14,7 @@ import java.util.Map;
  * @author dan.shan
  * @since 2015-06-02 16:04
  */
-public class OptionsJsonAction extends AjaxBaseAction {
+public class OptionJsonAction extends AjaxBaseAction {
 
     @Setter
     private int pageId;

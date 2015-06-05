@@ -3,7 +3,7 @@ function buildDataApi(pageId, filters) {
 }
 
 function buildOptionApi(pageId) {
-    return 'http://localhost:8080/ajax/monitor/options?pageId=' + pageId;
+    return 'http://localhost:8080/ajax/monitor/option?pageId=' + pageId;
 }
 
 function loadOption(optionapi) {

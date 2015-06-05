@@ -17,7 +17,7 @@
 
     <package name="ajax_monitor" namespace="/ajax/monitor" extends="default">
 
-        <action name="options" class="com.dianping.wed.monitor.web.action.monitor.ajax.OptionsJsonAction">
+        <action name="option" class="com.dianping.wed.monitor.web.action.monitor.ajax.OptionJsonAction">
             <result type="json">
                 <param name="excludeNullProperties">true</param>
                 <param name="ignoreHierarchy">false</param>

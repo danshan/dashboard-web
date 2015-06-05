@@ -16,12 +16,6 @@
 		</constructor-arg>
 	</bean>
 
-	<bean id="monitorDao" class="com.dianping.wed.monitor.dao.impl.MonitorDaoImpl">
-		<constructor-arg ref="mongo"></constructor-arg>
-		<constructor-arg ref="morphia"></constructor-arg>
-		<constructor-arg value="WeddingEvent"></constructor-arg>
-	</bean>
-
 	<bean id="monitorQueryTemplateDao" class="com.dianping.wed.monitor.dao.impl.MonitorQueryTemplateImpl">
 		<constructor-arg ref="mongo"></constructor-arg>
 		<constructor-arg ref="morphia"></constructor-arg>

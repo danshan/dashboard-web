@@ -1,18 +1,18 @@
 package com.dianping.wed.monitor.web.action.monitor.ajax;
 
+import com.dianping.wed.monitor.service.MonitorDataService;
+import com.dianping.wed.monitor.service.MonitorDataServiceFactory;
 import com.dianping.wed.monitor.service.MonitorService;
 import com.dianping.wed.monitor.service.bean.MonitorDataDTO;
-import com.dianping.wed.monitor.service.bean.MonitorQueryDTO;
+import com.dianping.wed.monitor.service.bean.MonitorPageConfigDTO;
+import com.dianping.wed.monitor.service.bean.MonitorQueryTemplateDTO;
 import com.dianping.wed.monitor.web.action.AjaxBaseAction;
-import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import lombok.Setter;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -42,11 +42,12 @@ public class DataJsonAction extends AjaxBaseAction {
     }
 
     private MonitorDataDTO fetchData() {
-        Map<String, String> filterMap = parseFilters();
-        MonitorQueryDTO query = monitorService.loadQueryTemplateByPageId(this.pageId);
-        query = monitorService.renderQuery(query, filterMap);
 
-        MonitorDataDTO dataDTO = monitorService.findDataByQuery("Event", query);
+        MonitorQueryTemplateDTO queryTemplate = monitorService.loadQueryTemplateByPageId(this.pageId);
+        Map<String, String> filterMap = parseFilters();
+
+        MonitorDataService dataService = MonitorDataServiceFactory.getDataService(queryTemplate.getDatasource());
+        MonitorDataDTO dataDTO = dataService.findDataByQuery(queryTemplate, filterMap);
         return dataDTO;
     }
 

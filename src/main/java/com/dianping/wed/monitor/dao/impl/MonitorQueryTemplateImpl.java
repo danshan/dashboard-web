@@ -27,10 +27,10 @@ public class MonitorQueryTemplateImpl extends BasicDAO<MonitorQueryTemplate, Str
         //TODO
         MonitorQueryTemplate template = new MonitorQueryTemplate();
         template.setPageId(pageId);
-        // template.setQuery("{\"eventId\": 16}");
-        template.setQuery("{}");
-        template.setKeys("{\"eventId\":1, \"pcUrlRewriteID\": 1, \"mUrlRewriteID\": 1}");
-        template.setColumnName("eventId");
+        template.setQuery("{}, {\"eventId\":1, \"pcUrlRewriteID\": 1, \"mUrlRewriteID\": 1}");
+        template.setXAxis("eventId");
+        template.setDatasource("MongoWedding");
+        template.setCollectionName("Event");
         return template;
     }
 

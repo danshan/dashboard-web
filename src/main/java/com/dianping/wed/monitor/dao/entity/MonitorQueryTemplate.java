@@ -16,8 +16,11 @@ public class MonitorQueryTemplate {
     private ObjectId id = new ObjectId();
 
     private int pageId;
+    private String collectionName;
     private String query;
-    private String keys;
-    private String columnName;
+    /** 作为横坐标的列名, 该列应该同时出现在query中 */
+    private String xAxis;
+    /** 数据源 */
+    private String datasource;
 
 }

@@ -9,6 +9,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.mongodb.Mongo;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +36,35 @@ public class MonitorOptionDaoImpl extends BasicDAO<MonitorOption, String> implem
         title.put("text", "未来一周气温变化");
         title.put("subtext", "纯属虚构");
         map.put("title", title);
+
+        Map<String, Object> temp;
+        Map<String, Object> toolbox = Maps.newHashMap();
+        toolbox.put("show", true);
+        Map<String, Object> toolboxFeature = Maps.newHashMap();
+
+        temp = new HashMap<String, Object>();
+        temp.put("show", true);
+        toolboxFeature.put("mark", temp);
+
+        temp = new HashMap<String, Object>();
+        temp.put("show", true);
+        temp.put("readOnly", false);
+        toolboxFeature.put("dataView", temp);
+
+        temp = new HashMap<String, Object>();
+        temp.put("show", true);
+        temp.put("type", new String[] {"line", "bar"});
+        toolboxFeature.put("magicType", temp);
+
+        temp = new HashMap<String, Object>();
+        temp.put("show", true);
+        toolboxFeature.put("restore", temp);
+
+        temp = new HashMap<String, Object>();
+        temp.put("show", true);
+        toolboxFeature.put("saveAsImage", temp);
+        toolbox.put("feature", toolboxFeature);
+        map.put("toolbox", toolbox);
 
         Map<String, Object> tooltip = Maps.newHashMap();
         tooltip.put("trigger", "axis");

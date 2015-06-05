@@ -10,6 +10,7 @@
 	http://www.dianping.com/schema/avatar http://www.dianping.com/schema/avatar/avatar-1.0.xsd
 	http://www.dianping.com/schema/cortex http://www.dianping.com/schema/cortex/cortex-1.0.xsd">
 
+    <context:component-scan base-package="com.dianping.wed.monitor" />
     <context:annotation-config/>
 
     <avatar:cache jms-url="${cache.jms.url}"

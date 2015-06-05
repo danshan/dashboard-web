@@ -1,9 +1,9 @@
 package com.dianping.wed.monitor.dao.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.dianping.wed.monitor.dao.MonitorDao;
+import com.dianping.wed.monitor.dao.MonitorDataMongoDao;
+import com.dianping.wed.monitor.dao.entity.MongoDataQuery;
 import com.dianping.wed.monitor.dao.entity.MonitorData;
-import com.dianping.wed.monitor.service.bean.MonitorQueryDTO;
 import com.google.code.morphia.Morphia;
 import com.google.code.morphia.dao.BasicDAO;
 import com.google.common.collect.Lists;
@@ -20,23 +20,23 @@ import java.util.List;
  * @author dan.shan
  * @since 2015-06-03 10:11
  */
-public class MonitorDaoImpl extends BasicDAO<MonitorData, String> implements MonitorDao {
+public class MonitorDataMongoDaoImpl extends BasicDAO<MonitorData, String> implements MonitorDataMongoDao {
 
-    private static final Logger logger = LoggerFactory.getLogger(MonitorDaoImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(MonitorDataMongoDaoImpl.class);
 
-    protected MonitorDaoImpl(Mongo mongo, Morphia morphia, String dbName) {
+    protected MonitorDataMongoDaoImpl(Mongo mongo, Morphia morphia, String dbName) {
         super(mongo, morphia, dbName);
         ds.ensureCaps();
         ds.ensureIndexes();
     }
 
     @Override
-    public List<JSONObject> findByQuery(String collectionName, MonitorQueryDTO query) {
+    public List<JSONObject> findByQuery(MongoDataQuery query) {
         List<JSONObject> result = Lists.newLinkedList();
 
         DBObject dbObjQeury = (DBObject) JSON.parse(query.getQuery());
         DBObject dbObjKeys = (DBObject) JSON.parse(query.getKeys());
-        DBCursor dbCursor = this.getDatastore().getDB().getCollection(collectionName).find(dbObjQeury, dbObjKeys).limit(100);
+        DBCursor dbCursor = this.getDatastore().getDB().getCollection(query.getCollectionName()).find(dbObjQeury, dbObjKeys).limit(100);
 
         while (dbCursor.hasNext()) {
             result.add(com.alibaba.fastjson.JSON.parseObject(dbCursor.next().toString()));
@@ -44,5 +44,4 @@ public class MonitorDaoImpl extends BasicDAO<MonitorData, String> implements Mon
 
         return result;
     }
-
 }

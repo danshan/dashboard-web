@@ -1,4 +1,4 @@
-package com.dianping.wed.monitor.mongo;
+package com.dianping.wed.monitor.data.mongo;
 
 import com.dianping.combiz.spring.util.LionConfigUtils;
 import com.google.code.morphia.Morphia;

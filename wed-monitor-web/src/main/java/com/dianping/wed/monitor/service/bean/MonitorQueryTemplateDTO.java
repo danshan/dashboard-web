@@ -1,6 +1,6 @@
 package com.dianping.wed.monitor.service.bean;
 
-import com.dianping.wed.monitor.enums.Datasource;
+import com.dianping.wed.monitor.data.enums.Datasource;
 import lombok.Data;
 
 /**

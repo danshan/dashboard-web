@@ -1,7 +1,7 @@
-package com.dianping.wed.monitor.dao;
+package com.dianping.wed.monitor.data.dao;
 
 import com.alibaba.fastjson.JSONObject;
-import com.dianping.wed.monitor.dao.entity.MongoDataQuery;
+import com.dianping.wed.monitor.data.dao.entity.MongoDataQuery;
 
 import java.util.List;
 

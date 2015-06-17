@@ -1,7 +1,7 @@
-package com.dianping.wed.monitor.dao.impl;
+package com.dianping.wed.monitor.data.dao.impl;
 
-import com.dianping.wed.monitor.dao.MonitorQueryTemplateDao;
-import com.dianping.wed.monitor.dao.entity.MonitorQueryTemplate;
+import com.dianping.wed.monitor.data.dao.MonitorQueryTemplateDao;
+import com.dianping.wed.monitor.data.dao.entity.MonitorQueryTemplate;
 import com.google.code.morphia.Morphia;
 import com.google.code.morphia.dao.BasicDAO;
 import com.mongodb.Mongo;

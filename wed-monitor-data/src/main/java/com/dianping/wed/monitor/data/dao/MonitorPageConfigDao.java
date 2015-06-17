@@ -1,6 +1,6 @@
-package com.dianping.wed.monitor.dao;
+package com.dianping.wed.monitor.data.dao;
 
-import com.dianping.wed.monitor.dao.entity.MonitorPageConfig;
+import com.dianping.wed.monitor.data.dao.entity.MonitorPageConfig;
 
 /**
  * @author dan.shan

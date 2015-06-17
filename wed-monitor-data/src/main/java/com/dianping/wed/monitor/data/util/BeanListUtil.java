@@ -1,4 +1,4 @@
-package com.dianping.wed.monitor.util;
+package com.dianping.wed.monitor.data.util;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;

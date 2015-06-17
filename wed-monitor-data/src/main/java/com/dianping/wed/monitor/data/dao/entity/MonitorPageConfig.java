@@ -1,4 +1,4 @@
-package com.dianping.wed.monitor.dao.entity;
+package com.dianping.wed.monitor.data.dao.entity;
 
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;

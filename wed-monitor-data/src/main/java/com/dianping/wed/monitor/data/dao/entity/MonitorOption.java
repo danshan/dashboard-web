@@ -1,4 +1,4 @@
-package com.dianping.wed.monitor.dao.entity;
+package com.dianping.wed.monitor.data.dao.entity;
 
 import com.google.code.morphia.annotations.Entity;
 import com.google.code.morphia.annotations.Id;
@@ -9,11 +9,13 @@ import java.io.Serializable;
 
 /**
  * @author dan.shan
- * @since 2015-06-03 10:59
+ * @since 2015-06-04 16:19
  */
 @Entity(noClassnameStored = true)
 @Data
-public class MonitorData implements Serializable {
+public class MonitorOption implements Serializable {
     @Id
     private ObjectId id = new ObjectId();
+
+    private String option;
 }

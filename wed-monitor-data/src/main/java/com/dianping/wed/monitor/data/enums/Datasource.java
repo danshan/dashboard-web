@@ -1,4 +1,4 @@
-package com.dianping.wed.monitor.enums;
+package com.dianping.wed.monitor.data.enums;
 
 /**
  * @author dan.shan

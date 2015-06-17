@@ -4,7 +4,7 @@
        xsi:schemaLocation="
 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-    <bean id="dsMongoWeddingDao" class="com.dianping.wed.monitor.dao.impl.MonitorDataMongoDaoImpl">
+    <bean id="dsMongoWeddingDao" class="com.dianping.wed.monitor.data.dao.impl.MonitorDataMongoDaoImpl">
         <constructor-arg ref="mongo"></constructor-arg>
         <constructor-arg ref="morphia"></constructor-arg>
         <constructor-arg value="WeddingEvent"></constructor-arg>

@@ -1,8 +1,8 @@
-package com.dianping.wed.monitor.dao.impl;
+package com.dianping.wed.monitor.data.dao.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.dianping.wed.monitor.dao.MonitorOptionDao;
-import com.dianping.wed.monitor.dao.entity.MonitorOption;
+import com.dianping.wed.monitor.data.dao.MonitorOptionDao;
+import com.dianping.wed.monitor.data.dao.entity.MonitorOption;
 import com.google.code.morphia.Morphia;
 import com.google.code.morphia.dao.BasicDAO;
 import com.google.common.collect.Lists;

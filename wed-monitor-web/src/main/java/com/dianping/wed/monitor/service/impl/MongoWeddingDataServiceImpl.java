@@ -1,6 +1,6 @@
 package com.dianping.wed.monitor.service.impl;
 
-import com.dianping.wed.monitor.dao.MonitorDataMongoDao;
+import com.dianping.wed.monitor.data.dao.MonitorDataMongoDao;
 
 /**
  * @author dan.shan

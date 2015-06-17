@@ -15,6 +15,7 @@
     <url>http://maven.apache.org</url>
 
     <modules>
+        <module>wed-monitor-data</module>
         <module>wed-monitor-web</module>
     </modules>
 
@@ -45,7 +46,7 @@
 
         <!-- pagelet -->
         <servlet-api.version>2.5</servlet-api.version>
-        <jsp-api.version>2.0</jsp-api.version>
+        <jsp-api.version>2.1</jsp-api.version>
         <w3c.pagelet.version>2.1.1-SNAPSHOT</w3c.pagelet.version>
 
         <!-- test -->

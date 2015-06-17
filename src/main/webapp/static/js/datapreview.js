@@ -1,6 +1,5 @@
 var domCode = document.getElementById('sidebar-code');
 var domGraphic = document.getElementById('graphic');
-var domMain = document.getElementById('main');
 var domMessage = document.getElementById('wrong-message');
 var iconResize = document.getElementById('icon-resize');
 var needRefresh = false;
@@ -33,6 +32,7 @@ function focusGraphic() {
 
 function changeDatasource() {
     mime = $('#J_datasource option:selected').attr("mime");
+    $('.J_codeMirror').find('.CodeMirror').remove();
     editor = CodeMirror.fromTextArea(
         document.getElementById("code"),
         {
@@ -46,6 +46,8 @@ function changeDatasource() {
 
 function refresh(isBtnRefresh){
     domMessage.innerHTML = '';
+    var sql = $('#code').val();
+    alert(sql);
     if (isBtnRefresh) {
         needRefresh = true;
         focusGraphic();
@@ -78,5 +80,4 @@ function launchExample() {
 
     isExampleLaunched = 1;
     changeDatasource();
-    refresh();
 }

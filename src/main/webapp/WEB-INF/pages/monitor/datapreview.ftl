@@ -35,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <div class="well sidebar-nav">
+            <div class="well sidebar-nav J_codeMirror">
                 <div class="nav-header"><a href="#" onclick="autoResize()" class="glyphicon glyphicon-resize-full" id ="icon-resize" ></a>option</div>
                 <textarea id="code" name="code">
 {
@@ -47,7 +47,7 @@
             </div><!--/.well -->
         </div><!--/span-->
         <div id="graphic" class="col-md-8">
-            <div id="main" class="main" style="height:400px"></div>
+            <div class="main" style="height:400px"></div>
             <div>
                 <button type="button" class="btn btn-sm btn-success" onclick="refresh(true)">
                     <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷 新

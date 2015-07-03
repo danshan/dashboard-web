@@ -1,6 +1,5 @@
-package com.dianping.wed.monitor.data.mongo;
+package com.dianping.wed.monitor.config.mongo;
 
-import com.dianping.combiz.spring.util.LionConfigUtils;
 import com.google.code.morphia.Morphia;
 import com.mongodb.Mongo;
 import com.mongodb.MongoOptions;

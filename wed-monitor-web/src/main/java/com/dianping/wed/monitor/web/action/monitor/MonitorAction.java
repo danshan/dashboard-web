@@ -1,7 +1,7 @@
 package com.dianping.wed.monitor.web.action.monitor;
 
+import com.dianping.wed.monitor.config.service.dto.MonitorPageConfigDTO;
 import com.dianping.wed.monitor.service.MonitorService;
-import com.dianping.wed.monitor.service.bean.MonitorPageConfigDTO;
 import com.dianping.wed.monitor.web.action.BaseAction;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,8 +34,7 @@ public class MonitorAction extends BaseAction {
     private MonitorPageConfigDTO loadPageConfig() {
         Assert.isTrue(this.pageId > 0, "page id should be positive number.");
 
-        MonitorPageConfigDTO pageConfig = monitorService.loadPageConfigByPageId(this.pageId);
-        return pageConfig;
+        return monitorService.loadPageConfigByPageId(this.pageId);
     }
 
     @Override

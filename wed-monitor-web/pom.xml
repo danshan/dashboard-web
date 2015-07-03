@@ -21,6 +21,11 @@
     <dependencies>
         <dependency>
             <groupId>com.dianping</groupId>
+            <artifactId>wed-monitor-config</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dianping</groupId>
             <artifactId>wed-monitor-data</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
@@ -29,6 +34,14 @@
         <dependency>
             <groupId>com.dianping</groupId>
             <artifactId>gaia-widget</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.dianping</groupId>
+            <artifactId>shopbusiness-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.dianping</groupId>
+            <artifactId>mail-api</artifactId>
         </dependency>
 
         <!-- struts -->

@@ -45,11 +45,6 @@
     </filter>
 
     <filter>
-        <filter-name>image-prepare-filter</filter-name>
-        <filter-class>com.dianping.piccentercloud.display.api.web.filter.ImagePrepareFilter</filter-class>
-    </filter>
-
-    <filter>
         <filter-name>struts-prepare</filter-name>
         <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareFilter</filter-class>
         <init-param>
@@ -104,21 +99,7 @@
     </filter-mapping>
 
     <filter-mapping>
-        <filter-name>image-prepare-filter</filter-name>
-        <url-pattern>/*</url-pattern>
-        <dispatcher>REQUEST</dispatcher>
-        <dispatcher>FORWARD</dispatcher>
-    </filter-mapping>
-
-    <filter-mapping>
         <filter-name>cat-filter</filter-name>
-        <url-pattern>/*</url-pattern>
-        <dispatcher>REQUEST</dispatcher>
-        <dispatcher>FORWARD</dispatcher>
-    </filter-mapping>
-
-    <filter-mapping>
-        <filter-name>image-prepare-filter</filter-name>
         <url-pattern>/*</url-pattern>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>

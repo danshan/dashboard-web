@@ -15,6 +15,8 @@
     <url>http://maven.apache.org</url>
 
     <modules>
+        <module>wed-monitor-common</module>
+        <module>wed-monitor-config</module>
         <module>wed-monitor-data</module>
         <module>wed-monitor-web</module>
     </modules>
@@ -34,8 +36,7 @@
         <dp.piccenter-display-api.version>0.0.6</dp.piccenter-display-api.version>
         <dp.gaia-widget.version>1.5.4-SNAPSHOT</dp.gaia-widget.version>
         <dp.neocortex-4j.version>0.3.0</dp.neocortex-4j.version>
-
-        <dp.shopbusiness-api.version>1.0.0.0-SNAPSHOT</dp.shopbusiness-api.version>
+        <dp.shopbusiness-api.version>0.0.32.72</dp.shopbusiness-api.version>
 
         <!-- struts -->
         <struts.version>2.3.16.3</struts.version>
@@ -43,10 +44,14 @@
         <!-- common -->
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <ognl.version>3.0.5</ognl.version>
+        <lombok.version>0.11.6</lombok.version>
+        <fastjson.version>1.1.39</fastjson.version>
+
+        <!-- servlet -->
+        <servlet-api.version>2.5</servlet-api.version>
+        <jsp-api.version>2.0</jsp-api.version>
 
         <!-- pagelet -->
-        <servlet-api.version>2.5</servlet-api.version>
-        <jsp-api.version>2.1</jsp-api.version>
         <w3c.pagelet.version>2.1.1-SNAPSHOT</w3c.pagelet.version>
 
         <!-- test -->
@@ -190,6 +195,16 @@
                 <groupId>ognl</groupId>
                 <artifactId>ognl</artifactId>
                 <version>${ognl.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
 
             <!-- servlet -->

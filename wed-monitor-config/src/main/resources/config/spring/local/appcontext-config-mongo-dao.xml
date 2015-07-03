@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="mongoConfigDAOClient" class="com.dianping.wed.monitor.config.mongo.MongoDAOClient">
+		<constructor-arg value="${shopbusiness-server.product.mongo.server.url}"/>
+	</bean>
+
+	<bean id="mongoConfig" factory-bean="mongoConfigDAOClient" factory-method="getMongoInstance" class="com.mongodb.Mongo"></bean>
+	<bean id="morphiaConfig" factory-bean="mongoConfigDAOClient" factory-method="getMorphiaInstance">
+		<constructor-arg index="0">
+			<list>
+				<value>com.dianping.wed.monitor.config.dao.entity.MonitorChartOption</value>
+				<value>com.dianping.wed.monitor.config.dao.entity.MonitorPageConfig</value>
+				<value>com.dianping.wed.monitor.config.dao.entity.MonitorQueryTemplate</value>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="monitorQueryTemplateDao" class="com.dianping.wed.monitor.config.dao.impl.MonitorQueryTemplateImpl">
+		<constructor-arg ref="mongoConfig"></constructor-arg>
+		<constructor-arg ref="morphiaConfig"></constructor-arg>
+		<constructor-arg value="ShopProduct"></constructor-arg>
+	</bean>
+
+	<bean id="monitorPageConfigDao" class="com.dianping.wed.monitor.config.dao.impl.MonitorPageConfigDaoImpl">
+		<constructor-arg ref="mongoConfig"></constructor-arg>
+		<constructor-arg ref="morphiaConfig"></constructor-arg>
+		<constructor-arg value="ShopProduct"></constructor-arg>
+	</bean>
+
+	<bean id="monitorOptionDao" class="com.dianping.wed.monitor.config.dao.impl.MonitorChartOptionDaoImpl">
+		<constructor-arg ref="mongoConfig"></constructor-arg>
+		<constructor-arg ref="morphiaConfig"></constructor-arg>
+		<constructor-arg value="ShopProduct"></constructor-arg>
+	</bean>
+</beans>

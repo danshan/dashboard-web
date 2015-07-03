@@ -9,10 +9,7 @@ import lombok.Data;
 @Data
 public class MongoDataQuery implements IMonitorDataQuery {
 
-    private String collectionName;
     /** 查询条件 */
     private String query;
-    /** 筛选的列 */
-    private String keys;
 
 }

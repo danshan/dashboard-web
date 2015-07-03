@@ -7,6 +7,7 @@ import com.dianping.wed.monitor.data.dao.entity.MonitorData;
 import com.google.code.morphia.Morphia;
 import com.google.code.morphia.dao.BasicDAO;
 import com.google.common.collect.Lists;
+import com.mongodb.CommandResult;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.Mongo;
@@ -34,12 +35,11 @@ public class MonitorDataMongoDaoImpl extends BasicDAO<MonitorData, String> imple
     public List<JSONObject> findByQuery(MongoDataQuery query) {
         List<JSONObject> result = Lists.newLinkedList();
 
-        DBObject dbObjQeury = (DBObject) JSON.parse(query.getQuery());
-        DBObject dbObjKeys = (DBObject) JSON.parse(query.getKeys());
-        DBCursor dbCursor = this.getDatastore().getDB().getCollection(query.getCollectionName()).find(dbObjQeury, dbObjKeys).limit(100);
+        CommandResult command = this.getDatastore().getDB().command(query.getQuery());
+        if (command.ok()) {
 
-        while (dbCursor.hasNext()) {
-            result.add(com.alibaba.fastjson.JSON.parseObject(dbCursor.next().toString()));
+        } else {
+            throw command.getException();
         }
 
         return result;

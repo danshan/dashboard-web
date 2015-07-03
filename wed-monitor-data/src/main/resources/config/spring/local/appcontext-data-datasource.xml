@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+
+    <bean id="dsMongoWeddingDAOClient" class="com.dianping.wed.monitor.data.mongo.MongoDAOClient">
+        <constructor-arg value="${shopbusiness-server.product.mongo.server.url}"/>
+    </bean>
+
+    <bean id="dsMongoWeddingMongoConfig" factory-bean="dsMongoWeddingDAOClient" factory-method="getMongoInstance" class="com.mongodb.Mongo"></bean>
+    <bean id="dsMongoWeddingMorphiaConfig" factory-bean="dsMongoWeddingDAOClient" factory-method="getMorphiaInstance">
+        <constructor-arg index="0">
+            <list>
+                <value>com.dianping.wed.monitor.data.dao.entity.MonitorData</value>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <!-- wedding mongo datasource -->
+    <bean id="dsMongoWeddingDao" class="com.dianping.wed.monitor.data.dao.impl.MonitorDataMongoDaoImpl">
+        <constructor-arg ref="dsMongoWeddingMongoConfig"></constructor-arg>
+        <constructor-arg ref="dsMongoWeddingMorphiaConfig"></constructor-arg>
+        <constructor-arg value="WeddingEvent"></constructor-arg>
+    </bean>
+
+    <!-- wedding mysql datasource -->
+    <bean id="dsMongoWeddingService" class="com.dianping.wed.monitor.data.service.impl.MongoDataServiceImpl">
+        <property name="monitorDataMongoDao" ref="dsMongoWeddingDao"/>
+    </bean>
+
+
+</beans>

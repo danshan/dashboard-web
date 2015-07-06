@@ -2,7 +2,9 @@ package com.dianping.wed.monitor.data.service.dto;
 
 import lombok.Data;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author dan.shan

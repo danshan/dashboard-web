@@ -1,9 +1,7 @@
 package com.dianping.wed.monitor.data.dao;
 
-import com.alibaba.fastjson.JSONObject;
 import com.dianping.wed.monitor.data.dao.entity.MongoDataQuery;
-
-import java.util.List;
+import com.mongodb.DBCursor;
 
 /**
  * @author dan.shan
@@ -11,6 +9,6 @@ import java.util.List;
  */
 public interface MonitorDataMongoDao {
 
-    public List<JSONObject> findByQuery(MongoDataQuery query);
+    public DBCursor findByQuery(MongoDataQuery query);
 
 }

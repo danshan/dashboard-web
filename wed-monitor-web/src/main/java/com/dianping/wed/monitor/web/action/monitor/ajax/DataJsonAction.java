@@ -44,13 +44,8 @@ public class DataJsonAction extends AjaxBaseAction {
 
     private MonitorDataDTO fetchData() {
 
-        MonitorQueryTemplateDTO queryTemplate = monitorService.loadQueryTemplateByPageId(this.pageId);
         Map<String, String> filterMap = parseFilters();
-
-        Datasource datasource = Datasource.valueOf(queryTemplate.getDatasource());
-        MonitorDataService dataService = DataServiceFactory.getDataService(datasource);
-        MonitorQueryDTO monitorQuery = monitorService.renderMonitorQuery(queryTemplate, filterMap);
-        MonitorDataDTO dataDTO = dataService.findDataByQuery(monitorQuery);
+        MonitorDataDTO dataDTO = monitorService.findDataByPageId(this.pageId, filterMap);
         return dataDTO;
     }
 

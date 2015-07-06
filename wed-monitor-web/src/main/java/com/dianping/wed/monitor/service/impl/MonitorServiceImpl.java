@@ -76,6 +76,8 @@ public class MonitorServiceImpl implements MonitorService {
         MonitorQueryDTO query = new MonitorQueryDTO();
         query.setQuery(renderQuery(template.getQuery(), params));
         query.setDatasource(Datasource.valueOf(template.getDatasource()));
+        query.setXAxis(template.getXAxis());
+
         return query;
     }
 

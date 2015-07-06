@@ -12,5 +12,6 @@ public class MonitorQueryDTO {
 
     private String query;
     private Datasource datasource;
+    private String xAxis;
 
 }

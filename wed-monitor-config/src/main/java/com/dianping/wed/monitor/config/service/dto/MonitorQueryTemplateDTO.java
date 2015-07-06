@@ -17,4 +17,6 @@ public class MonitorQueryTemplateDTO {
     /** 数据源 */
     private String datasource;
 
+    private String xAxis;
+
 }

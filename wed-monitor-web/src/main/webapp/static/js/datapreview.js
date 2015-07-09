@@ -47,7 +47,6 @@ function changeDatasource() {
 function refresh(isBtnRefresh){
     domMessage.innerHTML = '';
     var sql = $('#code').val();
-    alert(sql);
     if (isBtnRefresh) {
         needRefresh = true;
         focusGraphic();

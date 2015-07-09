@@ -2,14 +2,17 @@ package com.dianping.wed.monitor.config.dao.impl;
 
 import com.dianping.wed.monitor.config.dao.MonitorPageConfigDao;
 import com.dianping.wed.monitor.config.dao.entity.MonitorPageConfig;
+import com.dianping.wed.monitor.config.service.dto.MonitorPageConfigDTO;
 import com.google.code.morphia.Morphia;
 import com.google.code.morphia.dao.BasicDAO;
-import com.google.common.collect.Lists;
+import com.google.code.morphia.query.Query;
+import com.google.code.morphia.query.UpdateOperations;
 import com.mongodb.Mongo;
+import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
+import java.util.Date;
 
 /**
  * @author dan.shan
@@ -26,20 +29,49 @@ public class MonitorPageConfigDaoImpl extends BasicDAO<MonitorPageConfig, String
     }
 
     @Override
-    public MonitorPageConfig loadConfigByPageId(int pageId) {
-        // TODO
+    public MonitorPageConfig loadConfigByPageId(String pageId) {
         MonitorPageConfig config = new MonitorPageConfig();
-        config.setPageId(pageId);
+        config.setPageId(new ObjectId(pageId));
 
-        List<MonitorPageConfig.InputFilter> inputFilterList = Lists.newLinkedList();
-        MonitorPageConfig.InputFilter filter = new MonitorPageConfig.InputFilter();
-        filter.setDesc("活动ID");
-        filter.setName("eventId");
-        inputFilterList.add(filter);
+        Query<MonitorPageConfig> query = ds.createQuery(MonitorPageConfig.class)
+                .field("pageId").equal(pageId)
+                .field("isDeleted").equal(0);
+        return query.get();
+    }
 
-        config.setInputFilters(inputFilterList);
-        config.setTimeFilter("addDate");
+    @Override
+    public String addPageConfig(MonitorPageConfig po) {
+        po.setAddTime(new Date());
+        po.setUpdateTime(po.getAddTime());
 
-        return config;
+        ds.save(po);
+        return po.getPageId() == null ? null : po.getPageId().toString();
+    }
+
+    @Override
+    public String deletePageConfigByPageId(String pageId) {
+        Query<MonitorPageConfig> query = ds.createQuery(MonitorPageConfig.class)
+                .field("pageId").equal(pageId)
+                .field("isDeleted").equal(0);
+        UpdateOperations<MonitorPageConfig> update = ds.createUpdateOperations(MonitorPageConfig.class)
+                .set("isDeleted", 1)
+                .set("updateTime", new Date());
+
+        return ds.update(query, update).getError();
+    }
+
+    @Override
+    public String updatePageConfigByPageId(MonitorPageConfigDTO pageConfig) {
+        Query<MonitorPageConfig> query = ds.createQuery(MonitorPageConfig.class)
+                .field("pageId").equal(pageConfig.getPageId())
+                .field("isDeleted").equal(0);
+
+        UpdateOperations<MonitorPageConfig> update = ds.createUpdateOperations(MonitorPageConfig.class)
+                .set("updateTime", new Date())
+                .set("pageName", pageConfig.getPageName())
+                .set("pageDesc", pageConfig.getPageDesc())
+                .set("inputFilters", pageConfig.getInputFilters())
+                .set("timeFilter", pageConfig.getTimeFilter());
+        return ds.update(query, update).getError();
     }
 }

@@ -15,6 +15,9 @@
         <action name="optionpreview" class="com.dianping.wed.monitor.web.action.monitor.PreviewOptionAction">
             <result type="freemarker" name="success">/WEB-INF/pages/monitor/optionpreview.ftl</result>
         </action>
+        <action name="pagelist" class="com.dianping.wed.monitor.web.action.monitor.PageConfigListAction">
+            <result type="freemarker" name="success">/WEB-INF/pages/monitor/pagelist.ftl</result>
+        </action>
 
     </package>
 

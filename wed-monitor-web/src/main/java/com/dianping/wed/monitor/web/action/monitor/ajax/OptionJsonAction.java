@@ -5,6 +5,7 @@ import com.dianping.wed.monitor.config.service.dto.MonitorChartOptionDTO;
 import com.dianping.wed.monitor.service.MonitorService;
 import com.dianping.wed.monitor.web.action.AjaxBaseAction;
 import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
@@ -17,14 +18,14 @@ import java.util.Map;
 public class OptionJsonAction extends AjaxBaseAction {
 
     @Setter
-    private int pageId;
+    private String pageId;
 
     @Resource
     private MonitorService monitorService;
 
     @Override
     protected int doAjaxExecute(Map<String, Object> result) throws Exception {
-        Assert.isTrue(pageId > 0, "page id should be positive number.");
+        Assert.isTrue(StringUtils.isNotBlank(pageId), "page id should not be blank.");
         MonitorChartOptionDTO option = monitorService.loadChartOptionByPageId(pageId);
         Map<String, Object> optionObj = JSON.parseObject(option.getOption());
 

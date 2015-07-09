@@ -8,6 +8,6 @@ import com.dianping.wed.monitor.config.dao.entity.MonitorQueryTemplate;
  */
 public interface MonitorQueryTemplateDao {
 
-    public MonitorQueryTemplate loadQueryTemplateByPageId(int pageId);
+    public MonitorQueryTemplate loadQueryTemplateByPageId(String pageId);
 
 }

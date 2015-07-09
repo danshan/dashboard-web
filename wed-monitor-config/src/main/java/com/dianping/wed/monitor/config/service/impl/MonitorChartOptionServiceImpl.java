@@ -4,7 +4,7 @@ import com.dianping.wed.monitor.config.dao.MonitorChartOptionDao;
 import com.dianping.wed.monitor.config.dao.entity.MonitorChartOption;
 import com.dianping.wed.monitor.config.service.MonitorChartOptionService;
 import com.dianping.wed.monitor.config.service.dto.MonitorChartOptionDTO;
-import com.dinaping.wed.monitor.common.util.BeanListUtil;
+import com.dianping.wed.monitor.common.util.BeanListUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -20,7 +20,7 @@ public class MonitorChartOptionServiceImpl implements MonitorChartOptionService 
     private MonitorChartOptionDao monitorChartOptionDao;
 
     @Override
-    public MonitorChartOptionDTO loadChartOptionByPageId(int pageId) {
+    public MonitorChartOptionDTO loadChartOptionByPageId(String pageId) {
         MonitorChartOption option = monitorChartOptionDao.loadOptionByPageId(pageId);
         if (option == null) {
             return new MonitorChartOptionDTO();

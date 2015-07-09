@@ -1,11 +1,6 @@
 package com.dianping.wed.monitor.web.action.monitor.ajax;
 
-import com.dianping.wed.monitor.config.service.dto.MonitorQueryTemplateDTO;
-import com.dianping.wed.monitor.data.enums.Datasource;
-import com.dianping.wed.monitor.data.service.DataServiceFactory;
-import com.dianping.wed.monitor.data.service.MonitorDataService;
 import com.dianping.wed.monitor.data.service.dto.MonitorDataDTO;
-import com.dianping.wed.monitor.data.service.dto.MonitorQueryDTO;
 import com.dianping.wed.monitor.service.MonitorService;
 import com.dianping.wed.monitor.web.action.AjaxBaseAction;
 import com.google.common.collect.Maps;
@@ -23,7 +18,7 @@ import java.util.Map;
 public class DataJsonAction extends AjaxBaseAction {
 
     @Setter
-    private int pageId;
+    private String pageId;
     @Setter
     private String filters;
 
@@ -32,7 +27,7 @@ public class DataJsonAction extends AjaxBaseAction {
 
     @Override
     protected int doAjaxExecute(Map<String, Object> result) throws Exception {
-        Assert.isTrue(pageId > 0, "page id should by positive number.");
+        Assert.isTrue(StringUtils.isNotBlank(pageId), "page id should not be blank.");
 
         MonitorDataDTO dataDTO = fetchData();
 

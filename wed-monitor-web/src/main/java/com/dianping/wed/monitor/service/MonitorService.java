@@ -14,13 +14,20 @@ import java.util.Map;
  */
 public interface MonitorService {
 
-    MonitorDataDTO findDataByPageId(int pageId, Map<String, String> params);
+    MonitorDataDTO findDataByPageId(String pageId, Map<String, String> params);
 
-    MonitorPageConfigDTO loadPageConfigByPageId(int pageId);
+    MonitorPageConfigDTO loadPageConfigByPageId(String pageId);
 
-    MonitorChartOptionDTO loadChartOptionByPageId(int pageId);
+    String deletePageConfigByPageId(String pageId);
 
-    MonitorQueryTemplateDTO loadQueryTemplateByPageId(int pageId);
+    String updatePageConfigByPageId(MonitorPageConfigDTO pageConfig);
+
+    String addPageConfig(MonitorPageConfigDTO pageConfig);
+
+    MonitorChartOptionDTO loadChartOptionByPageId(String pageId);
+
+    MonitorQueryTemplateDTO loadQueryTemplateByPageId(String pageId);
 
     MonitorQueryDTO renderMonitorQuery(MonitorQueryTemplateDTO template, Map<String, String> params);
+
 }

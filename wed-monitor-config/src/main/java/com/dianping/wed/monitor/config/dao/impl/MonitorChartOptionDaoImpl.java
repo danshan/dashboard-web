@@ -27,7 +27,7 @@ public class MonitorChartOptionDaoImpl extends BasicDAO<MonitorChartOption, Stri
     }
 
     @Override
-    public MonitorChartOption loadOptionByPageId(int pageId) {
+    public MonitorChartOption loadOptionByPageId(String pageId) {
         MonitorChartOption option = new MonitorChartOption();
 
         Map<String, Object> map = Maps.newHashMap();

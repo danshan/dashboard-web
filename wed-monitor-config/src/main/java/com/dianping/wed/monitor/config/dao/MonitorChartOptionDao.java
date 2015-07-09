@@ -8,6 +8,6 @@ import com.dianping.wed.monitor.config.dao.entity.MonitorChartOption;
  */
 public interface MonitorChartOptionDao {
 
-    public MonitorChartOption loadOptionByPageId(int pageId);
+    public MonitorChartOption loadOptionByPageId(String pageId);
 
 }

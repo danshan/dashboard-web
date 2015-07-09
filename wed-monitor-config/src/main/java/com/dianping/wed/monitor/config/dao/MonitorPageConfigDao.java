@@ -1,6 +1,7 @@
 package com.dianping.wed.monitor.config.dao;
 
 import com.dianping.wed.monitor.config.dao.entity.MonitorPageConfig;
+import com.dianping.wed.monitor.config.service.dto.MonitorPageConfigDTO;
 
 /**
  * @author dan.shan
@@ -8,6 +9,11 @@ import com.dianping.wed.monitor.config.dao.entity.MonitorPageConfig;
  */
 public interface MonitorPageConfigDao {
 
-    public MonitorPageConfig loadConfigByPageId(int pageId);
+    public MonitorPageConfig loadConfigByPageId(String pageId);
 
+    public String addPageConfig(MonitorPageConfig po);
+
+    public String deletePageConfigByPageId(String pageId);
+
+    public String updatePageConfigByPageId(MonitorPageConfigDTO pageConfig);
 }

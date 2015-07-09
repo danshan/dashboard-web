@@ -5,6 +5,7 @@ import com.dianping.wed.monitor.service.MonitorService;
 import com.dianping.wed.monitor.web.action.BaseAction;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
@@ -16,7 +17,7 @@ import javax.annotation.Resource;
 public class MonitorAction extends BaseAction {
 
     @Setter @Getter
-    private int pageId;
+    private String pageId;
 
     @Getter
     private MonitorPageConfigDTO pageConfig;
@@ -32,7 +33,7 @@ public class MonitorAction extends BaseAction {
     }
 
     private MonitorPageConfigDTO loadPageConfig() {
-        Assert.isTrue(this.pageId > 0, "page id should be positive number.");
+        Assert.isTrue(StringUtils.isNotBlank(pageId), "page id should not be blank.");
 
         return monitorService.loadPageConfigByPageId(this.pageId);
     }

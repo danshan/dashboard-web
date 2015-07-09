@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public interface MonitorQueryTemplateService {
 
-    public MonitorQueryTemplateDTO loadQueryTemplateByPageId(int pageId);
+    public MonitorQueryTemplateDTO loadQueryTemplateByPageId(String pageId);
 
     public String addQueryTemplate(MonitorQueryTemplateDTO queryTemplate);
 

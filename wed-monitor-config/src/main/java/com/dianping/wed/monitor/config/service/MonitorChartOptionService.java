@@ -8,7 +8,8 @@ import com.dianping.wed.monitor.config.service.dto.MonitorChartOptionDTO;
  */
 public interface MonitorChartOptionService {
 
-    public MonitorChartOptionDTO loadChartOptionByPageId(int pageId);
+    public MonitorChartOptionDTO loadChartOptionByPageId(String pageId);
 
     public String addChartOption(MonitorChartOptionDTO chartOption);
+
 }

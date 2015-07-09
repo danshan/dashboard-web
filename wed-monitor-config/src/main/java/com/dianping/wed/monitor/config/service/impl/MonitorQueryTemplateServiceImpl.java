@@ -4,7 +4,7 @@ import com.dianping.wed.monitor.config.dao.MonitorQueryTemplateDao;
 import com.dianping.wed.monitor.config.dao.entity.MonitorQueryTemplate;
 import com.dianping.wed.monitor.config.service.MonitorQueryTemplateService;
 import com.dianping.wed.monitor.config.service.dto.MonitorQueryTemplateDTO;
-import com.dinaping.wed.monitor.common.util.BeanListUtil;
+import com.dianping.wed.monitor.common.util.BeanListUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -20,7 +20,7 @@ public class MonitorQueryTemplateServiceImpl implements MonitorQueryTemplateServ
     private MonitorQueryTemplateDao monitorQueryTemplateDao;
 
     @Override
-    public MonitorQueryTemplateDTO loadQueryTemplateByPageId(int pageId) {
+    public MonitorQueryTemplateDTO loadQueryTemplateByPageId(String pageId) {
         MonitorQueryTemplate template = monitorQueryTemplateDao.loadQueryTemplateByPageId(pageId);
         if (template == null) {
             return new MonitorQueryTemplateDTO();

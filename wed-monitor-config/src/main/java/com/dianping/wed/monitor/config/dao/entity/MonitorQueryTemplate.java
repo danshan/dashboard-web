@@ -15,7 +15,7 @@ public class MonitorQueryTemplate {
     @Id
     private ObjectId id = new ObjectId();
 
-    private int pageId;
+    private String pageId;
     private String query;
     private String xAxis;
     /** 数据源 */

@@ -5,6 +5,7 @@ import com.google.code.morphia.annotations.Id;
 import lombok.Data;
 import org.bson.types.ObjectId;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,13 +18,19 @@ import java.util.List;
 public class MonitorPageConfig {
 
     @Id
-    private ObjectId id = new ObjectId();
+    private ObjectId pageId = new ObjectId();
 
-    private int pageId;
+    private String pageName;
+    private String pageDesc;
+
     /** 可选搜索条件 */
     private List<InputFilter> inputFilters;
     /** 时间筛选条件, 如果该列不为空, 那么页面应该有针对dateFilter的startTime和endTime筛选功能 */
     private String timeFilter;
+
+    private int isDeleted;
+    private Date addTime;
+    private Date updateTime;
 
     @Data
     public static final class InputFilter {

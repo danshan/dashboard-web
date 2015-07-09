@@ -23,7 +23,7 @@ public class MonitorQueryTemplateImpl extends BasicDAO<MonitorQueryTemplate, Str
     }
 
     @Override
-    public MonitorQueryTemplate loadQueryTemplateByPageId(int pageId) {
+    public MonitorQueryTemplate loadQueryTemplateByPageId(String pageId) {
         //TODO
         MonitorQueryTemplate template = new MonitorQueryTemplate();
         template.setPageId(pageId);

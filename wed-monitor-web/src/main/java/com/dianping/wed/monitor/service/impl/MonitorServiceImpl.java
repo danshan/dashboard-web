@@ -1,5 +1,6 @@
 package com.dianping.wed.monitor.service.impl;
 
+import com.dianping.wed.monitor.common.util.StringTemplateUtil;
 import com.dianping.wed.monitor.config.service.MonitorChartOptionService;
 import com.dianping.wed.monitor.config.service.MonitorPageConfigService;
 import com.dianping.wed.monitor.config.service.MonitorQueryTemplateService;
@@ -12,7 +13,6 @@ import com.dianping.wed.monitor.data.service.MonitorDataService;
 import com.dianping.wed.monitor.data.service.dto.MonitorDataDTO;
 import com.dianping.wed.monitor.data.service.dto.MonitorQueryDTO;
 import com.dianping.wed.monitor.service.MonitorService;
-import com.dinaping.wed.monitor.common.util.StringTemplateUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,8 +37,8 @@ public class MonitorServiceImpl implements MonitorService {
     private MonitorChartOptionService monitorChartOptionService;
 
     @Override
-    public MonitorDataDTO findDataByPageId(int pageId, Map<String, String> params) {
-        Assert.isTrue(pageId > 0, "page id should be positive number.");
+    public MonitorDataDTO findDataByPageId(String pageId, Map<String, String> params) {
+        Assert.isTrue(StringUtils.isNotBlank(pageId), "page id should be blank.");
 
         MonitorQueryTemplateDTO queryTemplate = monitorQueryTemplateService.loadQueryTemplateByPageId(pageId);
         MonitorQueryDTO monitorQuery = this.renderMonitorQuery(queryTemplate, params);
@@ -50,21 +50,46 @@ public class MonitorServiceImpl implements MonitorService {
     }
 
     @Override
-    public MonitorPageConfigDTO loadPageConfigByPageId(int pageId) {
-        Assert.isTrue(pageId > 0, "page id should be positive number.");
+    public MonitorPageConfigDTO loadPageConfigByPageId(String pageId) {
+        Assert.isTrue(StringUtils.isNotBlank(pageId), "page id should be blank.");
         return monitorPageConfigService.loadPageConfigByPageId(pageId);
     }
 
     @Override
-    public MonitorChartOptionDTO loadChartOptionByPageId(int pageId) {
-        Assert.isTrue(pageId > 0, "page id should be positive number.");
+    public String deletePageConfigByPageId(String pageId) {
+        Assert.isTrue(StringUtils.isNotBlank(pageId), "page id should be blank.");
+        return monitorPageConfigService.deletePageConfigByPageId(pageId);
+    }
+
+    @Override
+    public String updatePageConfigByPageId(MonitorPageConfigDTO pageConfig) {
+        Assert.isTrue(StringUtils.isNotBlank(pageConfig.getPageId()), "page id should be blank.");
+
+        MonitorPageConfigDTO exists = monitorPageConfigService.loadPageConfigByPageId(pageConfig.getPageId());
+        Assert.notNull(exists);
+        exists.setPageName(pageConfig.getPageName());
+        exists.setPageDesc(pageConfig.getPageDesc());
+
+        return monitorPageConfigService.updatePageConfigByPageId(exists);
+    }
+
+    @Override
+    public String addPageConfig(MonitorPageConfigDTO pageConfig) {
+        Assert.isTrue(StringUtils.isNotBlank(pageConfig.getPageId()), "page id should be blank.");
+
+        return monitorPageConfigService.addPageConfig(pageConfig);
+    }
+
+    @Override
+    public MonitorChartOptionDTO loadChartOptionByPageId(String pageId) {
+        Assert.isTrue(StringUtils.isNotBlank(pageId), "page id should be blank.");
         return monitorChartOptionService.loadChartOptionByPageId(pageId);
 
     }
 
     @Override
-    public MonitorQueryTemplateDTO loadQueryTemplateByPageId(int pageId) {
-        Assert.isTrue(pageId > 0, "page id should be positive number.");
+    public MonitorQueryTemplateDTO loadQueryTemplateByPageId(String pageId) {
+        Assert.isTrue(StringUtils.isNotBlank(pageId), "page id should be blank.");
         return monitorQueryTemplateService.loadQueryTemplateByPageId(pageId);
     }
 

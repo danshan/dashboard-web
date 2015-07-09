@@ -39,9 +39,14 @@
                 <div class="nav-header"><a href="#" onclick="autoResize()" class="glyphicon glyphicon-resize-full" id ="icon-resize" ></a>option</div>
                 <textarea id="code" name="code">
 {
-    "eventId" : 1,
-    "pcUrlRewriteID": 1,
-    "mUrlRewriteID": 1
+    "collection": "Event",
+    "query": {}
+    "keys": {
+        "createTime": 1,
+        "pcUrlRewriteID": 1,
+        "mUrlRewriteID": 1
+    },
+    "xAxis": "createTime"
 }
                 </textarea>
             </div><!--/.well -->

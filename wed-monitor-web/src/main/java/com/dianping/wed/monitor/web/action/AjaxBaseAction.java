@@ -25,7 +25,11 @@ public abstract class AjaxBaseAction extends BaseAction {
 		} catch (Exception ex) {
 			code = CODE_ERROR;
 			logger.error("==== ajax error ====", ex);
-			msg.put("message", "处理出错，请稍候再试");
+			if (ex instanceof IllegalArgumentException) {
+				msg.put("message", ex.getMessage());
+			} else {
+				msg.put("message", "处理出错，请稍候再试");
+			}
 		}
 		
 		return SUCCESS;

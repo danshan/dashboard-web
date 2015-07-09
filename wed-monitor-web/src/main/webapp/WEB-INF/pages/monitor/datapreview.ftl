@@ -67,6 +67,6 @@
 
 </div><!--/.fluid-container-->
 <!-- container end -->
-<script src="/static/js/datapreview.js"></script>
+<script src="/static/js/monitor/datapreview.js"></script>
 </body>
 </html>

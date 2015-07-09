@@ -5,11 +5,15 @@ import com.dianping.wed.monitor.config.dao.entity.MonitorPageConfig;
 import com.dianping.wed.monitor.config.service.MonitorPageConfigService;
 import com.dianping.wed.monitor.config.service.dto.MonitorPageConfigDTO;
 import com.dianping.wed.monitor.common.util.BeanListUtil;
+import com.google.common.collect.Lists;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author dan.shan
@@ -56,6 +60,23 @@ public class MonitorPageConfigServiceImpl implements MonitorPageConfigService {
         Assert.isTrue(StringUtils.isNotBlank(pageConfig.getPageId()), "page id should be blank.");
 
         return monitorPageConfigDao.updatePageConfigByPageId(pageConfig);
+    }
+
+    @Override
+    public List<MonitorPageConfigDTO> findPageConfigs() {
+        List<MonitorPageConfig> polist = monitorPageConfigDao.findPageConfigs();
+        if (CollectionUtils.isEmpty(polist)) {
+            return new LinkedList<MonitorPageConfigDTO>();
+        }
+
+        List<MonitorPageConfigDTO> result = Lists.newLinkedList();
+        MonitorPageConfigDTO dto;
+        for (MonitorPageConfig po : polist) {
+            dto = BeanListUtil.copyProperties(po, MonitorPageConfigDTO.class, new String[]{"pageId"});
+            dto.setPageId(po.getPageId().toString());
+            result.add(dto);
+        }
+        return result;
     }
 
 }

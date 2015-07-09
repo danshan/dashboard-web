@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author dan.shan
@@ -34,7 +35,7 @@ public class MonitorPageConfigDaoImpl extends BasicDAO<MonitorPageConfig, String
         config.setPageId(new ObjectId(pageId));
 
         Query<MonitorPageConfig> query = ds.createQuery(MonitorPageConfig.class)
-                .field("pageId").equal(pageId)
+                .field("_id").equal(new ObjectId(pageId))
                 .field("isDeleted").equal(0);
         return query.get();
     }
@@ -51,7 +52,7 @@ public class MonitorPageConfigDaoImpl extends BasicDAO<MonitorPageConfig, String
     @Override
     public String deletePageConfigByPageId(String pageId) {
         Query<MonitorPageConfig> query = ds.createQuery(MonitorPageConfig.class)
-                .field("pageId").equal(pageId)
+                .field("_id").equal(new ObjectId(pageId))
                 .field("isDeleted").equal(0);
         UpdateOperations<MonitorPageConfig> update = ds.createUpdateOperations(MonitorPageConfig.class)
                 .set("isDeleted", 1)
@@ -63,7 +64,7 @@ public class MonitorPageConfigDaoImpl extends BasicDAO<MonitorPageConfig, String
     @Override
     public String updatePageConfigByPageId(MonitorPageConfigDTO pageConfig) {
         Query<MonitorPageConfig> query = ds.createQuery(MonitorPageConfig.class)
-                .field("pageId").equal(pageConfig.getPageId())
+                .field("_id").equal(new ObjectId(pageConfig.getPageId()))
                 .field("isDeleted").equal(0);
 
         UpdateOperations<MonitorPageConfig> update = ds.createUpdateOperations(MonitorPageConfig.class)
@@ -73,5 +74,12 @@ public class MonitorPageConfigDaoImpl extends BasicDAO<MonitorPageConfig, String
                 .set("inputFilters", pageConfig.getInputFilters())
                 .set("timeFilter", pageConfig.getTimeFilter());
         return ds.update(query, update).getError();
+    }
+
+    @Override
+    public List<MonitorPageConfig> findPageConfigs() {
+        Query<MonitorPageConfig> query = ds.createQuery(MonitorPageConfig.class)
+                .field("isDeleted").equal(0);
+        return query.asList();
     }
 }

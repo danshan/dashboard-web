@@ -15,8 +15,11 @@
         <action name="optionpreview" class="com.dianping.wed.monitor.web.action.monitor.PreviewOptionAction">
             <result type="freemarker" name="success">/WEB-INF/pages/monitor/optionpreview.ftl</result>
         </action>
-        <action name="pagelist" class="com.dianping.wed.monitor.web.action.monitor.PageConfigListAction">
-            <result type="freemarker" name="success">/WEB-INF/pages/monitor/pagelist.ftl</result>
+        <action name="pageconfiglist" class="com.dianping.wed.monitor.web.action.monitor.PageConfigListAction">
+            <result type="freemarker" name="success">/WEB-INF/pages/monitor/pageconfiglist.ftl</result>
+        </action>
+        <action name="pageconfigdetail" class="com.dianping.wed.monitor.web.action.monitor.PageConfigDetailAction">
+            <result type="freemarker" name="success">/WEB-INF/pages/monitor/pageconfigdetail.ftl</result>
         </action>
 
     </package>
@@ -32,6 +35,14 @@
         </action>
 
         <action name="data" class="com.dianping.wed.monitor.web.action.monitor.ajax.DataJsonAction">
+            <result type="json">
+                <param name="excludeNullProperties">true</param>
+                <param name="ignoreHierarchy">false</param>
+                <param name="includeProperties">code,msg\..*</param>
+            </result>
+        </action>
+
+        <action name="pageconfigop" class="com.dianping.wed.monitor.web.action.monitor.ajax.PageConfigOpJsonAction">
             <result type="json">
                 <param name="excludeNullProperties">true</param>
                 <param name="ignoreHierarchy">false</param>

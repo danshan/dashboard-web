@@ -22,17 +22,22 @@
 <!-- container start -->
 <div class="container">
 
-    <table class="table table-striped table-hover">
-        <caption>所有监控页</caption>
-        <thead>
-            <th>ID</th>
-        </thead>
-        <tbody>
+    <div>
+        <input hidden="hidden" class="J_pageId" value="${(pageConfig.pageId)!""}">
+        <div class="form-group">
+            <label for="pageName">Page Name</label>
+            <input type="text" class="form-control J_pageName" id="pageName" value="${((pageConfig.pageName)!"")?html}" placeholder="Page Name">
+        </div>
+        <div class="form-group">
+            <label for="pageDesc">Page Description</label>
+            <input type="text" class="form-control J_pageDesc" id="pageDesc" value="${((pageConfig.pageDesc)!"")?html}" placeholder="Page Description">
+        </div>
 
-        </tbody>
-    </table>
+        <button type="submit" class="btn btn-default" onclick="submitPageConfig();">Submit</button>
+    </div>
 
 </div>
 
+<script src="/static/js/monitor/pageconfigdetail.js"></script>
 </body>
 </html>

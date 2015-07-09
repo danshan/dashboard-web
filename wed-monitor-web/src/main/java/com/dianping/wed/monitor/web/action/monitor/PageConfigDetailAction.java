@@ -4,26 +4,31 @@ import com.dianping.wed.monitor.config.service.dto.MonitorPageConfigDTO;
 import com.dianping.wed.monitor.service.MonitorService;
 import com.dianping.wed.monitor.web.action.BaseAction;
 import lombok.Getter;
+import lombok.Setter;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * @author dan.shan
- * @since 2015-07-06 17:52
+ * @since 2015-07-09 14:57
  */
-public class PageConfigListAction extends BaseAction {
+public class PageConfigDetailAction extends BaseAction {
+
+    @Setter
+    private String pageId;
+
+    @Getter
+    private MonitorPageConfigDTO pageConfig;
 
     @Resource
     private MonitorService monitorService;
 
-    @Getter
-    List<MonitorPageConfigDTO> pageConfigs;
-
-
     @Override
     protected String doExecute() throws Exception {
-        pageConfigs = monitorService.findPageConfigs();
+        if (StringUtils.isNotBlank(pageId)) {
+            pageConfig = monitorService.loadPageConfigByPageId(pageId);
+        }
         return SUCCESS;
     }
 
@@ -36,5 +41,4 @@ public class PageConfigListAction extends BaseAction {
     protected void doPrepare() throws Exception {
 
     }
-
 }

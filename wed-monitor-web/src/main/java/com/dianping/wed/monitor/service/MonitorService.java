@@ -6,6 +6,7 @@ import com.dianping.wed.monitor.config.service.dto.MonitorQueryTemplateDTO;
 import com.dianping.wed.monitor.data.service.dto.MonitorDataDTO;
 import com.dianping.wed.monitor.data.service.dto.MonitorQueryDTO;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,4 +31,5 @@ public interface MonitorService {
 
     MonitorQueryDTO renderMonitorQuery(MonitorQueryTemplateDTO template, Map<String, String> params);
 
+    List<MonitorPageConfigDTO> findPageConfigs();
 }

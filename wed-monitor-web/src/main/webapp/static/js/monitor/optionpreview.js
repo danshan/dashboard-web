@@ -112,7 +112,7 @@ function launchExample() {
     isExampleLaunched = 1;
     require(
         [
-            'echarts',
+            '.',
             'echarts/chart/line',
             'echarts/chart/bar',
             'echarts/chart/scatter',

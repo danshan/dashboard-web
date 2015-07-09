@@ -32,7 +32,7 @@ public class PageConfigOpJsonAction extends AjaxBaseAction {
 
     @Override
     protected int doAjaxExecute(Map<String, Object> result) throws Exception {
-        Assert.isTrue(StringUtils.isNotBlank(action));
+        Assert.isTrue(StringUtils.isNotBlank(action), "action should not be null.");
 
         String opresult;
         if ("add".equals(action)) {
@@ -50,14 +50,14 @@ public class PageConfigOpJsonAction extends AjaxBaseAction {
     }
 
     private String deletePageConfig() {
-        Assert.isTrue(StringUtils.isNotBlank(pageId));
+        Assert.isTrue(StringUtils.isNotBlank(pageId), "page id should not be null.");
 
         return monitorService.deletePageConfigByPageId(pageId);
     }
 
     private String updatePageConfig() {
-        Assert.isTrue(StringUtils.isNotBlank(pageId));
-        Assert.isTrue(StringUtils.isNotBlank(pageName));
+        Assert.isTrue(StringUtils.isNotBlank(pageId), "page id should not be null.");
+        Assert.isTrue(StringUtils.isNotBlank(pageName), "page name should not be null.");
 
         MonitorPageConfigDTO pageConfig = new MonitorPageConfigDTO();
         pageConfig.setPageName(pageName.trim());
@@ -68,7 +68,7 @@ public class PageConfigOpJsonAction extends AjaxBaseAction {
     }
 
     private String addPageConfig() {
-        Assert.isTrue(StringUtils.isNotBlank(pageName));
+        Assert.isTrue(StringUtils.isNotBlank(pageName), "page name should not be null.");
 
         MonitorPageConfigDTO pageConfig = new MonitorPageConfigDTO();
         pageConfig.setPageName(pageName.trim());

@@ -63,7 +63,7 @@
         pageId: ${pageId}
     };
 </script>
-<script src="/static/js/chartfactory.js"></script>
-<script src="/static/js/monitor.js"></script>
+<script src="/static/js/monitor/chartfactory.js"></script>
+<script src="/static/js/monitor/monitor.js"></script>
 </body>
 </html>

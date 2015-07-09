@@ -125,7 +125,7 @@ option = {
 </div><!--/.fluid-container-->
 <!-- container end -->
 
-<script src="/static/js/chartfactory.js"></script>
-<script src="/static/js/optionpreview.js"></script>
+<script src="/static/js/monitor/chartfactory.js"></script>
+<script src="/static/js/monitor/optionpreview.js"></script>
 </body>
 </html>

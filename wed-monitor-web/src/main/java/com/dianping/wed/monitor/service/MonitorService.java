@@ -17,6 +17,8 @@ public interface MonitorService {
 
     MonitorDataDTO findDataByPageId(String pageId, Map<String, String> params);
 
+    MonitorDataDTO findDataByTemplate(MonitorQueryTemplateDTO queryTemplate, Map<String, String> params);
+
     MonitorPageConfigDTO loadPageConfigByPageId(String pageId);
 
     String deletePageConfigByPageId(String pageId);

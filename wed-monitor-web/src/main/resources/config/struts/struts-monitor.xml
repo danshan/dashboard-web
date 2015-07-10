@@ -42,6 +42,15 @@
             </result>
         </action>
 
+        <action name="datapreview" class="com.dianping.wed.monitor.web.action.monitor.ajax.DataPreviewJsonAction">
+            <result type="json">
+                <param name="excludeNullProperties">true</param>
+                <param name="ignoreHierarchy">false</param>
+                <param name="includeProperties">code,msg\..*</param>
+            </result>
+        </action>
+
+
         <action name="pageconfigop" class="com.dianping.wed.monitor.web.action.monitor.ajax.PageConfigOpJsonAction">
             <result type="json">
                 <param name="excludeNullProperties">true</param>

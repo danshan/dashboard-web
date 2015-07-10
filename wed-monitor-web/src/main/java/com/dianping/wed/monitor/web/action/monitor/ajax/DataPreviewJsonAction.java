@@ -1,6 +1,8 @@
 package com.dianping.wed.monitor.web.action.monitor.ajax;
 
+import com.alibaba.fastjson.JSONObject;
 import com.dianping.wed.monitor.config.service.dto.MonitorQueryTemplateDTO;
+import com.dianping.wed.monitor.data.service.dto.MonitorDataDTO;
 import com.dianping.wed.monitor.service.MonitorService;
 import com.dianping.wed.monitor.web.action.AjaxBaseAction;
 import lombok.Setter;
@@ -8,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -17,29 +20,47 @@ import java.util.Map;
 public class DataPreviewJsonAction extends AjaxBaseAction {
 
     @Setter
-    private String datasoruce;
+    private String queryTemplate;
     @Setter
-    private String query;
+    private String datasource;
     @Setter
-    private String xAxis;
+    private String pageId;
 
     @Resource
     private MonitorService monitorService;
 
     @Override
     protected int doAjaxExecute(Map<String, Object> result) throws Exception {
-        Assert.isTrue(StringUtils.isNotBlank(datasoruce), "datasource should not be null.");
-        Assert.isTrue(StringUtils.isNotBlank(query), "query should not be null.");
-        Assert.isTrue(StringUtils.isNotBlank(xAxis), "xAxis should not be null.");
 
-        MonitorQueryTemplateDTO template = new MonitorQueryTemplateDTO();
-        template.setXAxis(xAxis.trim());
-        template.setQuery(query.trim());
-        template.setDatasource(datasoruce.trim());
+        Assert.isTrue(StringUtils.isNotBlank(pageId), "page id should not be null.");
+        Assert.isTrue(StringUtils.isNotBlank(queryTemplate), "query template should not be null.");
+        Assert.isTrue(StringUtils.isNotBlank(datasource), "datasource should not be null.");
 
-        getMsg().put("data", "");
-        getMsg().put("columns", "");
+        MonitorQueryTemplateDTO template = buildTemplate();
+        Map<String, String> params = buildParams();
+
+        MonitorDataDTO data = monitorService.findDataByTemplate(template, params);
+        getMsg().put("data", data);
 
         return CODE_SUCCESS;
+    }
+
+    private Map<String, String> buildParams() {
+        return new HashMap<String, String>();
+    }
+
+    private MonitorQueryTemplateDTO buildTemplate() {
+        JSONObject jsonObject = JSONObject.parseObject(queryTemplate);
+
+        MonitorQueryTemplateDTO template = new MonitorQueryTemplateDTO();
+        template.setPageId(pageId.trim());
+        template.setDatasource(datasource.trim());
+        template.setXAxis(jsonObject.getString("xAxis"));
+        template.setQuery(queryTemplate);
+
+        Assert.isTrue(StringUtils.isNotBlank(template.getQuery()), "query should not be null.");
+        Assert.isTrue(StringUtils.isNotBlank(template.getXAxis()), "xAxis should not be null.");
+
+        return template;
     }
 }

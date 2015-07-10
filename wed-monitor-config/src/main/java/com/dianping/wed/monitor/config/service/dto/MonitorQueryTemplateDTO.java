@@ -11,7 +11,7 @@ import lombok.Data;
 public class MonitorQueryTemplateDTO {
 
     /** 监控页的pageId */
-    private int pageId;
+    private String pageId;
     /** 查询条件 */
     private String query;
     /** 数据源 */

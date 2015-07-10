@@ -42,6 +42,11 @@ public class MonitorServiceImpl implements MonitorService {
         Assert.isTrue(StringUtils.isNotBlank(pageId), "page id should not be blank.");
 
         MonitorQueryTemplateDTO queryTemplate = monitorQueryTemplateService.loadQueryTemplateByPageId(pageId);
+        return this.findDataByTemplate(queryTemplate, params);
+    }
+
+    @Override
+    public MonitorDataDTO findDataByTemplate(MonitorQueryTemplateDTO queryTemplate, Map<String, String> params) {
         MonitorQueryDTO monitorQuery = this.renderMonitorQuery(queryTemplate, params);
         Datasource datasource = Datasource.valueOf(queryTemplate.getDatasource());
 

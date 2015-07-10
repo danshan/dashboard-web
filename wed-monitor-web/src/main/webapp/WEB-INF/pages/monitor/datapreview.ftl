@@ -26,21 +26,22 @@
         <div id="sidebar-code" class="col-md-4">
             <div class="form-horizontal">
                 <div class="form-group">
-                    <label for="J_datasource" class="col-sm-3 control-label">数据源</label>
+                    <label for="datasource" class="col-sm-3 control-label">数据源</label>
                     <div class="col-sm-8">
-                        <select class="form-control" id="J_datasource" onchange="changeDatasource()">
+                        <select class="form-control J_datasource" id="datasource" onchange="changeDatasource()">
                             <option mime="application/json">MongoWedding</option>
                             <option mime="text/x-mysql">MysqlWed</option>
                         </select>
                     </div>
                 </div>
             </div>
+            <input hidden="hidden" class="J_pageId" value="${pageId}">
             <div class="well sidebar-nav J_codeMirror">
                 <div class="nav-header"><a href="#" onclick="autoResize()" class="glyphicon glyphicon-resize-full" id ="icon-resize" ></a>option</div>
-                <textarea id="code" name="code">
+                <textarea class="J_code" name="code">
 {
     "collection": "Event",
-    "query": {}
+    "query": {},
     "keys": {
         "createTime": 1,
         "pcUrlRewriteID": 1,
@@ -52,7 +53,7 @@
             </div><!--/.well -->
         </div><!--/span-->
         <div id="graphic" class="col-md-8">
-            <div class="main" style="height:400px"></div>
+            <pre class="J_result" style="height:600px"></pre>
             <div>
                 <button type="button" class="btn btn-sm btn-success" onclick="refresh(true)">
                     <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷 新

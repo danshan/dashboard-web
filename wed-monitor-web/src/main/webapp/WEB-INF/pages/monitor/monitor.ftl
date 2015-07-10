@@ -18,6 +18,11 @@
 <@navbar/>
 <!-- container start -->
 <div class="container">
+
+    <div class="jumbotron">
+        <h1>${pageConfig.pageName}</h1>
+        <p>${pageConfig.pageDesc}</p>
+    </div>
     <!-- input filter start -->
     <#if pageConfig.inputFilters?has_content || pageConfig.timeFilter?has_content>
     <div class="J_form">
@@ -48,6 +53,30 @@
     </#if>
     <!-- input filter end -->
 
+    <#if queryTemplate?has_content>
+        <div class="alert alert-success" role="alert">
+            <a href="/monitor/datapreview?pageId=${pageId}" class="btn btn-link">Query template here.</a>
+        </div>
+    <#else>
+        <div class="alert alert-warning" role="alert">
+            <p>
+                Can not find query template.<a href="/monitor/datapreview?pageId=${pageId}" class="btn btn-link">Create one.</a>
+            </p>
+        </div>
+    </#if>
+
+    <#if chartOption?has_content>
+        <div class="alert alert-success" role="alert">
+            <a href="/monitor/optionpreview?pageId=${pageId}" class="btn btn-link">Chart option here.</a>
+        </div>
+    <#else>
+        <div class="alert alert-warning" role="alert">
+            <p>
+                Can not find chart option.<a href="/monitor/optionpreview?pageId=${pageId}" class="btn btn-link">Create one.</a>
+            </p>
+        </div>
+    </#if>
+
     <p id='wrong-message' style="color:red"></p>
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
     <div id="chart_${pageId}" style="height:400px"></div>
@@ -60,7 +89,7 @@
 
 <script type="text/javascript">
     chartData = {
-        pageId: ${pageId}
+        pageId: "${pageId}"
     };
 </script>
 <script src="/static/js/monitor/chartfactory.js"></script>

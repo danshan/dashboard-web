@@ -1,6 +1,8 @@
 package com.dianping.wed.monitor.web.action.monitor;
 
+import com.dianping.wed.monitor.config.service.dto.MonitorChartOptionDTO;
 import com.dianping.wed.monitor.config.service.dto.MonitorPageConfigDTO;
+import com.dianping.wed.monitor.config.service.dto.MonitorQueryTemplateDTO;
 import com.dianping.wed.monitor.service.MonitorService;
 import com.dianping.wed.monitor.web.action.BaseAction;
 import lombok.Getter;
@@ -25,17 +27,19 @@ public class MonitorAction extends BaseAction {
     @Resource
     private MonitorService monitorService;
 
+    @Getter
+    private MonitorQueryTemplateDTO queryTemplate;
+    @Getter
+    private MonitorChartOptionDTO chartOption;
+
     @Override
     protected String doExecute() throws Exception {
-        this.pageConfig = loadPageConfig();
+        Assert.isTrue(StringUtils.isNotBlank(pageId), "page id should not be blank.");
+        this.pageConfig = monitorService.loadPageConfigByPageId(this.pageId);
+        this.queryTemplate = monitorService.loadQueryTemplateByPageId(pageId);
+        this.chartOption= monitorService.loadChartOptionByPageId(pageId);
 
         return SUCCESS;
-    }
-
-    private MonitorPageConfigDTO loadPageConfig() {
-        Assert.isTrue(StringUtils.isNotBlank(pageId), "page id should not be blank.");
-
-        return monitorService.loadPageConfigByPageId(this.pageId);
     }
 
     @Override

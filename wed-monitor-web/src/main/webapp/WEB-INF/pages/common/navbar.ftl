@@ -14,10 +14,7 @@
         <nav class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="/css/">CSS</a>
-                </li>
-                <li class="active">
-                    <a href="/components/">Components</a>
+                    <a href="/monitor/pageconfiglist">Page List</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

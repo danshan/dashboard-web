@@ -3,6 +3,7 @@ package com.dianping.wed.monitor.config.dao.impl;
 import com.dianping.wed.monitor.config.dao.MonitorPageConfigDao;
 import com.dianping.wed.monitor.config.dao.entity.MonitorPageConfig;
 import com.dianping.wed.monitor.config.service.dto.MonitorPageConfigDTO;
+import com.dianping.zebra.group.util.StringUtils;
 import com.google.code.morphia.Morphia;
 import com.google.code.morphia.dao.BasicDAO;
 import com.google.code.morphia.query.Query;
@@ -13,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -68,8 +70,8 @@ public class MonitorPageConfigDaoImpl extends BasicDAO<MonitorPageConfig, String
                 .set("updateTime", new Date())
                 .set("pageName", pageConfig.getPageName())
                 .set("pageDesc", pageConfig.getPageDesc())
-                .set("inputFilters", pageConfig.getInputFilters())
-                .set("timeFilter", pageConfig.getTimeFilter());
+                .set("inputFilters", pageConfig.getInputFilters() == null ? new LinkedList<MonitorPageConfig.InputFilter>() : pageConfig.getInputFilters())
+                .set("timeFilter", StringUtils.trimToEmpty(pageConfig.getTimeFilter()));
         return ds.update(query, update).getError();
     }
 

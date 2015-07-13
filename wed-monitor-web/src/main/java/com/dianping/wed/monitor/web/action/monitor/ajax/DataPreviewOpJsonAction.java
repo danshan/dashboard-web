@@ -17,16 +17,19 @@ import java.util.Map;
  * @author dan.shan
  * @since 2015-07-06 13:33
  */
-public class DataPreviewJsonAction extends AjaxBaseAction {
+public class DataPreviewOpJsonAction extends AjaxBaseAction {
 
+    @Setter
+    private String action; // add / update / delete
+
+    @Setter
+    private String pageId;
     @Setter
     private String queryTemplate;
     @Setter
-    private String xAxis;
-    @Setter
     private String datasource;
     @Setter
-    private String pageId;
+    private String xAxis;
 
     @Resource
     private MonitorService monitorService;
@@ -34,21 +37,39 @@ public class DataPreviewJsonAction extends AjaxBaseAction {
     @Override
     protected int doAjaxExecute(Map<String, Object> result) throws Exception {
 
+        Assert.isTrue(StringUtils.isNotBlank(action), "action should not be null.");
+
+        String opresult;
+        if ("update".equals(action)) {
+            opresult = updaetQueryTemplate();
+        } else if ("delete".equals(action)) {
+            opresult = deleteQueryTemplate();
+        } else {
+            opresult = "known action";
+        }
+
+        getMsg().put("result", opresult);
+        return CODE_SUCCESS;
+    }
+
+    private String deleteQueryTemplate() {
+        Assert.isTrue(StringUtils.isNotBlank(pageId), "page id should not be null.");
+
+        return monitorService.deleteQueryTemplateByPageId(pageId);
+    }
+
+    private String updaetQueryTemplate() {
         Assert.isTrue(StringUtils.isNotBlank(pageId), "page id should not be null.");
         Assert.isTrue(StringUtils.isNotBlank(queryTemplate), "query template should not be null.");
         Assert.isTrue(StringUtils.isNotBlank(datasource), "datasource should not be null.");
         Assert.isTrue(StringUtils.isNotBlank(xAxis), "xAxis should not be null.");
 
         MonitorQueryTemplateDTO template = buildTemplate();
-        Map<String, String> params = buildParams();
-
-        MonitorDataDTO data = monitorService.findDataByTemplate(template, params);
-        getMsg().put("data", data);
-
-        return CODE_SUCCESS;
+        return monitorService.updateQueryTemplateByPageId(template);
     }
 
     private Map<String, String> buildParams() {
+        // TODO
         return new HashMap<String, String>();
     }
 

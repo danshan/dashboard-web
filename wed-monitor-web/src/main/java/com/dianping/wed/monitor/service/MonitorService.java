@@ -34,4 +34,10 @@ public interface MonitorService {
     MonitorQueryDTO renderMonitorQuery(MonitorQueryTemplateDTO template, Map<String, String> params);
 
     List<MonitorPageConfigDTO> findPageConfigs();
+
+    String addQueryTemplate(MonitorQueryTemplateDTO template);
+
+    String updateQueryTemplateByPageId(MonitorQueryTemplateDTO template);
+
+    String deleteQueryTemplateByPageId(String pageId);
 }

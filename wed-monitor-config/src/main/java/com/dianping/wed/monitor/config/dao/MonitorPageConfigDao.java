@@ -1,7 +1,6 @@
 package com.dianping.wed.monitor.config.dao;
 
 import com.dianping.wed.monitor.config.dao.entity.MonitorPageConfig;
-import com.dianping.wed.monitor.config.service.dto.MonitorPageConfigDTO;
 
 import java.util.List;
 
@@ -17,7 +16,7 @@ public interface MonitorPageConfigDao {
 
     public String deletePageConfigByPageId(String pageId);
 
-    public String updatePageConfigByPageId(MonitorPageConfigDTO pageConfig);
+    public String updatePageConfigByPageId(MonitorPageConfig pageConfig);
 
     public List<MonitorPageConfig> findPageConfigs();
 }

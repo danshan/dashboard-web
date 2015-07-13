@@ -23,6 +23,7 @@
         <h1>${pageConfig.pageName}</h1>
         <p>${pageConfig.pageDesc}</p>
     </div>
+
     <!-- input filter start -->
     <#if pageConfig.inputFilters?has_content || pageConfig.timeFilter?has_content>
     <div class="J_form">
@@ -53,7 +54,7 @@
     </#if>
     <!-- input filter end -->
 
-    <#if queryTemplate?has_content>
+    <#if queryTemplate.pageId?has_content>
         <div class="alert alert-success" role="alert">
             <a href="/monitor/datapreview?pageId=${pageId}" class="btn btn-link">Query template here.</a>
         </div>
@@ -65,7 +66,7 @@
         </div>
     </#if>
 
-    <#if chartOption?has_content>
+    <#if chartOption.pageId?has_content>
         <div class="alert alert-success" role="alert">
             <a href="/monitor/optionpreview?pageId=${pageId}" class="btn btn-link">Chart option here.</a>
         </div>

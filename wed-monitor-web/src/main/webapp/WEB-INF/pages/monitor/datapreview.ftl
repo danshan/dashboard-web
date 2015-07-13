@@ -38,19 +38,14 @@
             <input hidden="hidden" class="J_pageId" value="${pageId}">
             <div class="well sidebar-nav J_codeMirror">
                 <div class="nav-header"><a href="#" onclick="autoResize()" class="glyphicon glyphicon-resize-full" id ="icon-resize" ></a>option</div>
-                <textarea class="J_code" name="code">
-{
-    "collection": "Event",
-    "query": {},
-    "keys": {
-        "createTime": 1,
-        "pcUrlRewriteID": 1,
-        "mUrlRewriteID": 1
-    },
-    "xAxis": "createTime"
-}
-                </textarea>
+                <textarea class="J_code" name="code">${(queryTemplate.query)!demoMongoQuery}</textarea>
             </div><!--/.well -->
+            <div class="form-inline">
+                <div class="form-group">
+                    <label for="xAxisLabel">x轴</label>
+                    <input type="text" class="form-control J_xAxis" value="${(queryTemplate.xAxis)!demoMongoXAxis}" id="xAxisLabel" placeholder="x轴">
+                </div>
+            </div>
         </div><!--/span-->
         <div id="graphic" class="col-md-8">
             <pre class="J_result" style="height:600px"></pre>
@@ -58,7 +53,7 @@
                 <button type="button" class="btn btn-sm btn-success" onclick="refresh(true)">
                     <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷 新
                 </button>
-                <button type="button" class="btn btn-sm btn-success" onclick="refresh(true)">
+                <button type="button" class="btn btn-sm btn-success" onclick="saveQueryTemplate()">
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>保 存
                 </button>
                 <span id='wrong-message' style="color:red"></span>

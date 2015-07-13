@@ -5,6 +5,8 @@ import com.google.code.morphia.annotations.Id;
 import lombok.Data;
 import org.bson.types.ObjectId;
 
+import java.util.Date;
+
 /**
  * @author dan.shan
  * @since 2015-06-03 13:55
@@ -21,4 +23,7 @@ public class MonitorQueryTemplate {
     /** 数据源 */
     private String datasource;
 
+    private int isDeleted;
+    private Date addTime;
+    private Date updateTime;
 }

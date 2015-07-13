@@ -115,6 +115,28 @@ public class MonitorServiceImpl implements MonitorService {
         return monitorPageConfigService.findPageConfigs();
     }
 
+    @Override
+    public String addQueryTemplate(MonitorQueryTemplateDTO template) {
+        return monitorQueryTemplateService.addQueryTemplate(template);
+    }
+
+    @Override
+    public String updateQueryTemplateByPageId(MonitorQueryTemplateDTO template) {
+        Assert.isTrue(StringUtils.isNotBlank(template.getPageId()), "page id should not be blank.");
+        MonitorQueryTemplateDTO exists = monitorQueryTemplateService.loadQueryTemplateByPageId(template.getPageId());
+        if (exists == null || StringUtils.isBlank(exists.getPageId())) {
+            return this.addQueryTemplate(template);
+        } else {
+            return monitorQueryTemplateService.updateQueryTemplateByPageId(template);
+        }
+    }
+
+    @Override
+    public String deleteQueryTemplateByPageId(String pageId) {
+        Assert.isTrue(StringUtils.isNotBlank(pageId), "page id should not be blank.");
+        return monitorQueryTemplateService.deleteQueryTemplateByPageId(pageId);
+    }
+
     private String renderQuery(String query, Map<String, String> params) {
         return StringTemplateUtil.replaceTemplateTag(query, params);
     }

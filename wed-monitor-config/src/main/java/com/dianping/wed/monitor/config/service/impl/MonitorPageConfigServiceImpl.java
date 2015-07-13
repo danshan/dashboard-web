@@ -8,6 +8,7 @@ import com.dianping.wed.monitor.common.util.BeanListUtil;
 import com.google.common.collect.Lists;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -59,7 +60,10 @@ public class MonitorPageConfigServiceImpl implements MonitorPageConfigService {
         Assert.notNull(pageConfig, "page config should not be null.");
         Assert.isTrue(StringUtils.isNotBlank(pageConfig.getPageId()), "page id should be blank.");
 
-        return monitorPageConfigDao.updatePageConfigByPageId(pageConfig);
+        MonitorPageConfig po = BeanListUtil.copyProperties(pageConfig, MonitorPageConfig.class, new String[]{"pageId"});
+        po.setPageId(new ObjectId(pageConfig.getPageId()));
+
+        return monitorPageConfigDao.updatePageConfigByPageId(po);
     }
 
     @Override

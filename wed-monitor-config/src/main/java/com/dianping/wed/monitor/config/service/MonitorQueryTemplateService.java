@@ -14,4 +14,7 @@ public interface MonitorQueryTemplateService {
 
     public String addQueryTemplate(MonitorQueryTemplateDTO queryTemplate);
 
+    public String updateQueryTemplateByPageId(MonitorQueryTemplateDTO queryTemplate);
+
+    public String deleteQueryTemplateByPageId(String pageId);
 }

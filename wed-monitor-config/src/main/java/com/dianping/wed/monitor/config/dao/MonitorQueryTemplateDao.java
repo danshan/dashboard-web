@@ -10,4 +10,9 @@ public interface MonitorQueryTemplateDao {
 
     public MonitorQueryTemplate loadQueryTemplateByPageId(String pageId);
 
+    public String addQueryTemplate(MonitorQueryTemplate queryTemplate);
+
+    public String updateQueryTemplateByPageId(MonitorQueryTemplate queryTemplate);
+
+    public String deleteQueryTemplateByPageId(String pageId);
 }

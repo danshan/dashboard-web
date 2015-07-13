@@ -49,7 +49,8 @@ function refresh(isBtnRefresh){
     domMessage.innerHTML = '';
     var queryTemplate = editor.getValue(),
         pageId = $('.J_pageId').val(),
-        datasource = $('.J_datasource option:selected').val();
+        datasource = $('.J_datasource option:selected').val(),
+        xAxis = $(".J_xAxis").val();
 
     if (isBtnRefresh) {
         needRefresh = true;
@@ -61,6 +62,7 @@ function refresh(isBtnRefresh){
         $.post(
             "/ajax/monitor/datapreview",
             {
+                xAxis: xAxis,
                 datasource: datasource,
                 pageId: pageId,
                 queryTemplate: queryTemplate
@@ -71,19 +73,9 @@ function refresh(isBtnRefresh){
             },
             "json"
         );
-        /*
-        (new Function(editor.doc.getValue()))();
-        var dataapi = $("#J_dataapi").val();
-        var datamap = loadData(dataapi);
-        */
     } catch (e) {
         domMessage.innerHTML = e;
     }
-}
-
-function checkDataApi() {
-    var dataapi = $("#J_dataapi").val();
-    window.open(dataapi);
 }
 
 launchExample();
@@ -96,6 +88,33 @@ function launchExample() {
 
     isExampleLaunched = 1;
     changeDatasource();
+}
+
+function saveQueryTemplate() {
+    var queryTemplate = editor.getValue(),
+        pageId = $('.J_pageId').val(),
+        datasource = $('.J_datasource option:selected').val(),
+        xAxis = $('J_xAxis').val(),
+        action = "update";
+
+    try {
+        $.post(
+            "/ajax/monitor/datapreviewop",
+            {
+                action: action,
+                datasource: datasource,
+                pageId: pageId,
+                queryTemplate: queryTemplate,
+                xAxis: xAxis
+            },
+            function(data){
+                alert("保存成功");
+            },
+            "json"
+        );
+    } catch (e) {
+        domMessage.innerHTML = e;
+    }
 }
 
 var JsonUti = {

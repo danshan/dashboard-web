@@ -31,9 +31,6 @@ public class MonitorPageConfigDaoImpl extends BasicDAO<MonitorPageConfig, String
 
     @Override
     public MonitorPageConfig loadConfigByPageId(String pageId) {
-        MonitorPageConfig config = new MonitorPageConfig();
-        config.setPageId(new ObjectId(pageId));
-
         Query<MonitorPageConfig> query = ds.createQuery(MonitorPageConfig.class)
                 .field("_id").equal(new ObjectId(pageId))
                 .field("isDeleted").equal(0);
@@ -62,9 +59,9 @@ public class MonitorPageConfigDaoImpl extends BasicDAO<MonitorPageConfig, String
     }
 
     @Override
-    public String updatePageConfigByPageId(MonitorPageConfigDTO pageConfig) {
+    public String updatePageConfigByPageId(MonitorPageConfig pageConfig) {
         Query<MonitorPageConfig> query = ds.createQuery(MonitorPageConfig.class)
-                .field("_id").equal(new ObjectId(pageConfig.getPageId()))
+                .field("_id").equal(pageConfig.getPageId())
                 .field("isDeleted").equal(0);
 
         UpdateOperations<MonitorPageConfig> update = ds.createUpdateOperations(MonitorPageConfig.class)

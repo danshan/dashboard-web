@@ -57,24 +57,25 @@ public class PageConfigOpJsonAction extends AjaxBaseAction {
 
     private String updatePageConfig() {
         Assert.isTrue(StringUtils.isNotBlank(pageId), "page id should not be null.");
-        Assert.isTrue(StringUtils.isNotBlank(pageName), "page name should not be null.");
 
-        MonitorPageConfigDTO pageConfig = new MonitorPageConfigDTO();
-        pageConfig.setPageName(pageName.trim());
-        pageConfig.setPageDesc(StringUtils.trimToEmpty(pageDesc));
-        // TODO input filter
-
+        MonitorPageConfigDTO pageConfig = buildPageConfig();
         return monitorService.updatePageConfigByPageId(pageConfig);
     }
 
     private String addPageConfig() {
+        MonitorPageConfigDTO pageConfig = buildPageConfig();
+        return monitorService.addPageConfig(pageConfig);
+    }
+
+    private MonitorPageConfigDTO buildPageConfig() {
         Assert.isTrue(StringUtils.isNotBlank(pageName), "page name should not be null.");
 
         MonitorPageConfigDTO pageConfig = new MonitorPageConfigDTO();
+        pageConfig.setPageId(pageId);
         pageConfig.setPageName(pageName.trim());
         pageConfig.setPageDesc(StringUtils.trimToEmpty(pageDesc));
         // TODO input filter
 
-        return monitorService.addPageConfig(pageConfig);
+        return pageConfig;
     }
 }

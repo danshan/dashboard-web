@@ -27,7 +27,7 @@
             <div class="well sidebar-nav">
                 <label class="control-label">测试数据</label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="J_dataapi" value="/ajax/monitor/data?pageId=1">
+                    <input type="text" class="form-control" id="J_dataapi" value="/ajax/monitor/data?pageId=${pageId}">
                     <div type="button" class="input-group-addon" onclick="checkDataApi()">Check</div>
                 </div>
                 <div class="nav-header">

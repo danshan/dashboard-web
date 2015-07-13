@@ -101,7 +101,7 @@ public class PreviewOptionAction extends BaseAction {
     protected String doExecute() throws Exception {
         Assert.isTrue(StringUtils.isNotBlank(pageId), "page id should not be null.");
 
-        monitorService.loadChartOptionByPageId(pageId);
+        this.chartOption = monitorService.loadChartOptionByPageId(pageId);
         return SUCCESS;
     }
 

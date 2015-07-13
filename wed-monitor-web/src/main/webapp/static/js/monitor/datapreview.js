@@ -94,7 +94,7 @@ function saveQueryTemplate() {
     var queryTemplate = editor.getValue(),
         pageId = $('.J_pageId').val(),
         datasource = $('.J_datasource option:selected').val(),
-        xAxis = $('J_xAxis').val(),
+        xAxis = $('.J_xAxis').val(),
         action = "update";
 
     try {
@@ -108,7 +108,11 @@ function saveQueryTemplate() {
                 xAxis: xAxis
             },
             function(data){
-                alert("保存成功");
+                if (data.code != 200) {
+                    alert(data.code.msg.message);
+                } else {
+                    alert("保存成功");
+                }
             },
             "json"
         );

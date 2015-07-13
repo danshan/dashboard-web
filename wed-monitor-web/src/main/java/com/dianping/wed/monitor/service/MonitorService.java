@@ -15,9 +15,13 @@ import java.util.Map;
  */
 public interface MonitorService {
 
+    // services of data
+
     MonitorDataDTO findDataByPageId(String pageId, Map<String, String> params);
 
     MonitorDataDTO findDataByTemplate(MonitorQueryTemplateDTO queryTemplate, Map<String, String> params);
+
+    // services of page config
 
     MonitorPageConfigDTO loadPageConfigByPageId(String pageId);
 
@@ -27,17 +31,28 @@ public interface MonitorService {
 
     String addPageConfig(MonitorPageConfigDTO pageConfig);
 
+    List<MonitorPageConfigDTO> findPageConfigs();
+
+    // services of chart option
+
     MonitorChartOptionDTO loadChartOptionByPageId(String pageId);
+
+    String deleteChartOptionByPageId(String pageId);
+
+    String updateChartOptionByPageId(MonitorChartOptionDTO option);
+
+    String addChartOption(MonitorChartOptionDTO option);
+
+    // servcies of query template
 
     MonitorQueryTemplateDTO loadQueryTemplateByPageId(String pageId);
 
     MonitorQueryDTO renderMonitorQuery(MonitorQueryTemplateDTO template, Map<String, String> params);
-
-    List<MonitorPageConfigDTO> findPageConfigs();
 
     String addQueryTemplate(MonitorQueryTemplateDTO template);
 
     String updateQueryTemplateByPageId(MonitorQueryTemplateDTO template);
 
     String deleteQueryTemplateByPageId(String pageId);
+
 }

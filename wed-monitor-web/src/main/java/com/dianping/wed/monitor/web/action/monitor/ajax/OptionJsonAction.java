@@ -27,9 +27,8 @@ public class OptionJsonAction extends AjaxBaseAction {
     protected int doAjaxExecute(Map<String, Object> result) throws Exception {
         Assert.isTrue(StringUtils.isNotBlank(pageId), "page id should not be blank.");
         MonitorChartOptionDTO option = monitorService.loadChartOptionByPageId(pageId);
-        Map<String, Object> optionObj = JSON.parseObject(option.getOption());
 
-        getMsg().put("option", optionObj);
+        getMsg().put("option", option.getOption());
         return CODE_SUCCESS;
     }
 

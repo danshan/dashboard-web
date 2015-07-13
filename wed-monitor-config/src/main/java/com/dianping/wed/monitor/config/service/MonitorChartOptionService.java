@@ -12,4 +12,7 @@ public interface MonitorChartOptionService {
 
     public String addChartOption(MonitorChartOptionDTO chartOption);
 
+    public String deleteChartOptionByPageId(String pageId);
+
+    public String updateChartOptionByPageId(MonitorChartOptionDTO option);
 }

@@ -38,8 +38,7 @@ public class MonitorQueryTemplateServiceImpl implements MonitorQueryTemplateServ
     public String addQueryTemplate(MonitorQueryTemplateDTO queryTemplate) {
         Assert.notNull(queryTemplate, "query template should not be null.");
 
-        MonitorQueryTemplate po = BeanListUtil.copyProperties(queryTemplate, MonitorQueryTemplate.class, new String[]{"pageId"});
-        po.setPageId(queryTemplate.getPageId());
+        MonitorQueryTemplate po = BeanListUtil.copyProperties(queryTemplate, MonitorQueryTemplate.class);
         return monitorQueryTemplateDao.addQueryTemplate(po);
     }
 
@@ -48,8 +47,7 @@ public class MonitorQueryTemplateServiceImpl implements MonitorQueryTemplateServ
         Assert.notNull(queryTemplate, "query template should not be null.");
         Assert.isTrue(StringUtils.isNotBlank(queryTemplate.getPageId()), "page id should be blank.");
 
-        MonitorQueryTemplate po = BeanListUtil.copyProperties(queryTemplate, MonitorQueryTemplate.class, new String[]{"pageId"});
-        po.setPageId(queryTemplate.getPageId());
+        MonitorQueryTemplate po = BeanListUtil.copyProperties(queryTemplate, MonitorQueryTemplate.class);
 
         return monitorQueryTemplateDao.updateQueryTemplateByPageId(po);
     }

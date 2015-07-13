@@ -137,6 +137,28 @@ public class MonitorServiceImpl implements MonitorService {
         return monitorQueryTemplateService.deleteQueryTemplateByPageId(pageId);
     }
 
+    @Override
+    public String deleteChartOptionByPageId(String pageId) {
+        Assert.isTrue(StringUtils.isNotBlank(pageId), "page id should not be blank.");
+        return monitorChartOptionService.deleteChartOptionByPageId(pageId);
+    }
+
+    @Override
+    public String updateChartOptionByPageId(MonitorChartOptionDTO option) {
+        Assert.isTrue(StringUtils.isNotBlank(option.getPageId()), "page id should not be blank.");
+        MonitorChartOptionDTO exists = monitorChartOptionService.loadChartOptionByPageId(option.getPageId());
+        if (exists == null || StringUtils.isBlank(exists.getPageId())) {
+            return this.addChartOption(option);
+        } else {
+            return monitorChartOptionService.updateChartOptionByPageId(option);
+        }
+    }
+
+    @Override
+    public String addChartOption(MonitorChartOptionDTO option) {
+        return monitorChartOptionService.addChartOption(option);
+    }
+
     private String renderQuery(String query, Map<String, String> params) {
         return StringTemplateUtil.replaceTemplateTag(query, params);
     }

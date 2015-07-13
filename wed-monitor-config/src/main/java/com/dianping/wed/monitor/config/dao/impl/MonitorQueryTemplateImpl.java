@@ -40,7 +40,7 @@ public class MonitorQueryTemplateImpl extends BasicDAO<MonitorQueryTemplate, Str
         queryTemplate.setUpdateTime(queryTemplate.getAddTime());
 
         ds.save(queryTemplate);
-        return queryTemplate.getPageId() == null ? null : queryTemplate.getPageId().toString();
+        return queryTemplate.getId() == null ? null : queryTemplate.getId().toString();
     }
 
     @Override

@@ -79,10 +79,11 @@ function refresh(isBtnRefresh){
     myChart = echarts.init(document.getElementById('chart_' + chartData.pageId));
     window.onresize = myChart.resize;
     try {
-        var chartOption = loadOption(buildOptionApi(chartData.pageId));
+        var optionStr = loadOption(buildOptionApi(chartData.pageId));
+        eval(optionStr);
         var datamap = loadData(buildDataApi(chartData.pageId, filters));
-        var option = buildOption(chartOption, datamap);
-        drawChart(option);
+        var chartOption = buildOption(option, datamap);
+        drawChart(chartOption);
         drawTable(datamap);
         /*
         var datamap = loadData(dataapi);

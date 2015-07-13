@@ -33,88 +33,17 @@
                 <div class="nav-header">
                     <a href="#" onclick="autoResize()" class="glyphicon glyphicon-resize-full" id ="icon-resize" ></a>option
                 </div>
-                <textarea id="code" name="code">
-option = {
-    title : {
-        text: '未来一周气温变化',
-        subtext: '纯属虚构'
-    },
-    tooltip : {
-        trigger: 'axis'
-    },
-    legend: {
-        data:[]
-    },
-    toolbox: {
-        show : true,
-        feature : {
-            mark : {show: true},
-            dataView : {show: true, readOnly: false},
-            magicType : {show: true, type: ['line', 'bar']},
-            restore : {show: true},
-            saveAsImage : {show: true}
-        }
-    },
-    calculable : true,
-    xAxis : [
-        {
-            type : 'category',
-            boundaryGap : false,
-            data : []
-        }
-    ],
-    yAxis : [
-        {
-            type : 'value',
-            axisLabel : {
-                formatter: '{value} °C'
-            }
-        }
-    ],
-    series : [
-        {
-            name:'最高气温',
-            type:'line',
-            data:[],
-            markPoint : {
-                data : [
-                    {type : 'max', name: '最大值'},
-                    {type : 'min', name: '最小值'}
-                ]
-            },
-            markLine : {
-                data : [
-                    {type : 'average', name: '平均值'}
-                ]
-            }
-        },
-        {
-            name:'最低气温',
-            type:'line',
-            data:[],
-            markPoint : {
-                data : [
-                    {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
-                ]
-            },
-            markLine : {
-                data : [
-                    {type : 'average', name : '平均值'}
-                ]
-            }
-        }
-    ]
-};
-                </textarea>
+                <textarea id="code" name="code">${(chartOption.option)!demoOption}</textarea>
             </div><!--/.well -->
         </div><!--/span-->
+        <input hidden="hidden" class="J_pageId" value="${pageId}">
         <div id="graphic" class="col-md-8">
             <div id="main" class="main" style="height:400px"></div>
             <div>
                 <button type="button" class="btn btn-sm btn-success" onclick="refresh(true)">
                     <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>刷 新
                 </button>
-                <button type="button" class="btn btn-sm btn-success" onclick="refresh(true)">
+                <button type="button" class="btn btn-sm btn-success" onclick="saveQueryTemplate()">
                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>保 存
                 </button>
                 <span id='wrong-message' style="color:red"></span>

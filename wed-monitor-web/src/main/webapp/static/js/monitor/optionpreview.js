@@ -112,7 +112,7 @@ function launchExample() {
     isExampleLaunched = 1;
     require(
         [
-            '.',
+            'echarts',
             'echarts/chart/line',
             'echarts/chart/bar',
             'echarts/chart/scatter',
@@ -131,4 +131,31 @@ function launchExample() {
         ],
         requireCallback
     );
+}
+
+function saveQueryTemplate() {
+    var chartOption = editor.getValue(),
+        pageId = $('.J_pageId').val(),
+        action = "update";
+
+    try {
+        $.post(
+            "/ajax/monitor/optionpreviewop",
+            {
+                action: action,
+                pageId: pageId,
+                chartOption: chartOption
+            },
+            function(data){
+                if (data.code != 200) {
+                    alert(data.code.msg.message);
+                } else {
+                    alert("保存成功");
+                }
+            },
+            "json"
+        );
+    } catch (e) {
+        domMessage.innerHTML = e;
+    }
 }

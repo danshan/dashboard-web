@@ -7,7 +7,7 @@ package com.dianping.wed.monitor.data.enums;
 public enum Datasource {
 
     MongoWedding(DSType.MongoDB, "wedding.mongo"),
-    MysqlWed(DSType.MySQL, "wedding.mysql");
+    MysqlWedding(DSType.MySQL, "wedding.mysql");
 
     public final DSType dsType;
     public final String dsName;

@@ -19,7 +19,7 @@ public class MonitorQueryTemplate {
 
     private String pageId;
     private String query;
-    private String xAxis;
+    private String xaxis;
     /** 数据源 */
     private String datasource;
 

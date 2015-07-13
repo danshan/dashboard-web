@@ -30,7 +30,7 @@
                     <div class="col-sm-8">
                         <select class="form-control J_datasource" id="datasource" onchange="changeDatasource()">
                             <option mime="application/json">MongoWedding</option>
-                            <option mime="text/x-mysql">MysqlWed</option>
+                            <option mime="text/x-mysql">MysqlWedding</option>
                         </select>
                     </div>
                 </div>
@@ -42,8 +42,9 @@
             </div><!--/.well -->
             <div class="form-inline">
                 <div class="form-group">
-                    <label for="xAxisLabel">x轴</label>
-                    <input type="text" class="form-control J_xAxis" value="${(queryTemplate.xAxis)!demoMongoXAxis}" id="xAxisLabel" placeholder="x轴">
+                    <label for="xaxisLabel">x轴</label>
+                    ${queryTemplate.xAxis}
+                    <input type="text" class="form-control J_xaxis" value="${(queryTemplate.xaxis)!demoMongoXaxis}" id="xaxisLabel" placeholder="x轴">
                 </div>
             </div>
         </div><!--/span-->

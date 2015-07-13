@@ -18,6 +18,6 @@ public class MongoDataQuery implements IMonitorDataQuery {
     /** collection */
     private String collection;
 
-    private String xAxis;
+    private String xaxis;
 
 }

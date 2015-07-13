@@ -1,6 +1,5 @@
 package com.dianping.wed.monitor.web.action.monitor.ajax;
 
-import com.alibaba.fastjson.JSONObject;
 import com.dianping.wed.monitor.config.service.dto.MonitorQueryTemplateDTO;
 import com.dianping.wed.monitor.data.service.dto.MonitorDataDTO;
 import com.dianping.wed.monitor.service.MonitorService;
@@ -22,7 +21,7 @@ public class DataPreviewJsonAction extends AjaxBaseAction {
     @Setter
     private String queryTemplate;
     @Setter
-    private String xAxis;
+    private String xaxis;
     @Setter
     private String datasource;
     @Setter
@@ -37,7 +36,7 @@ public class DataPreviewJsonAction extends AjaxBaseAction {
         Assert.isTrue(StringUtils.isNotBlank(pageId), "page id should not be null.");
         Assert.isTrue(StringUtils.isNotBlank(queryTemplate), "query template should not be null.");
         Assert.isTrue(StringUtils.isNotBlank(datasource), "datasource should not be null.");
-        Assert.isTrue(StringUtils.isNotBlank(xAxis), "xAxis should not be null.");
+        Assert.isTrue(StringUtils.isNotBlank(xaxis), "xaxis should not be null.");
 
         MonitorQueryTemplateDTO template = buildTemplate();
         Map<String, String> params = buildParams();
@@ -56,11 +55,11 @@ public class DataPreviewJsonAction extends AjaxBaseAction {
         MonitorQueryTemplateDTO template = new MonitorQueryTemplateDTO();
         template.setPageId(pageId.trim());
         template.setDatasource(datasource.trim());
-        template.setXAxis(xAxis.trim());
+        template.setXaxis(xaxis.trim());
         template.setQuery(queryTemplate);
 
         Assert.isTrue(StringUtils.isNotBlank(template.getQuery()), "query should not be null.");
-        Assert.isTrue(StringUtils.isNotBlank(template.getXAxis()), "xAxis should not be null.");
+        Assert.isTrue(StringUtils.isNotBlank(template.getXaxis()), "xaxis should not be null.");
 
         return template;
     }

@@ -25,10 +25,22 @@
         <constructor-arg value="WeddingEvent"></constructor-arg>
     </bean>
 
-    <!-- wedding mysql datasource -->
     <bean id="dsMongoWeddingService" class="com.dianping.wed.monitor.data.service.impl.MongoDataServiceImpl">
         <property name="monitorDataMongoDao" ref="dsMongoWeddingDao"/>
     </bean>
 
+    <!-- wedding mysql datasource -->
+
+    <bean id="mysqlDianPingWedDataSource" class="com.dianping.zebra.group.jdbc.GroupDataSource" init-method="init">
+        <property name="jdbcRef" value="dianpingwed"/>
+    </bean>
+
+    <bean id="jdbcTemplateWedding" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="mysqlDianPingWedDataSource" />
+    </bean>
+
+    <bean id="dsMysqlWeddingService" class="com.dianping.wed.monitor.data.service.impl.MysqlDataServiceImpl">
+        <property name="jdbcTemplate" ref="jdbcTemplateWedding"/>
+    </bean>
 
 </beans>

@@ -52,7 +52,7 @@ public class MonitorQueryTemplateImpl extends BasicDAO<MonitorQueryTemplate, Str
         UpdateOperations<MonitorQueryTemplate> update = ds.createUpdateOperations(MonitorQueryTemplate.class)
                 .set("updateTime", new Date())
                 .set("query", queryTemplate.getQuery())
-                .set("xAxis", queryTemplate.getXAxis())
+                .set("xaxis", queryTemplate.getXaxis())
                 .set("datasource", queryTemplate.getDatasource());
         return ds.update(query, update).getError();
     }

@@ -34,7 +34,7 @@ public class PreviewDataAction extends BaseAction {
             "    }\n" +
             "}\n";
     @Getter
-    private String demoMongoXAxis = "createTime";
+    private String demoMongoXaxis = "createTime";
 
     @Resource
     private MonitorService monitorService;

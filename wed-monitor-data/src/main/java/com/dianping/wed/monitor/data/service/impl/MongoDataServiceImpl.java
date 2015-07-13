@@ -61,8 +61,8 @@ public class MongoDataServiceImpl implements MonitorDataService {
         List<String> list = new LinkedList<String>(keys.keySet());
 
         // 把xAxis 提前
-        list.remove(query.getXAxis());
-        list.add(0, query.getXAxis());
+        list.remove(query.getXaxis());
+        list.add(0, query.getXaxis());
         return list;
     }
 
@@ -74,7 +74,7 @@ public class MongoDataServiceImpl implements MonitorDataService {
         mongoQuery.setCollection(json.getString("collection"));
         mongoQuery.setQuery(json.getString("query"));
         mongoQuery.setKeys(json.getString("keys"));
-        mongoQuery.setXAxis(query.getXAxis());
+        mongoQuery.setXaxis(query.getXaxis());
 
         return mongoQuery;
     }

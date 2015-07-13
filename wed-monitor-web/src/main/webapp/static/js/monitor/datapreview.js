@@ -50,7 +50,7 @@ function refresh(isBtnRefresh){
     var queryTemplate = editor.getValue(),
         pageId = $('.J_pageId').val(),
         datasource = $('.J_datasource option:selected').val(),
-        xAxis = $(".J_xAxis").val();
+        xaxis = $(".J_xaxis").val();
 
     if (isBtnRefresh) {
         needRefresh = true;
@@ -62,7 +62,7 @@ function refresh(isBtnRefresh){
         $.post(
             "/ajax/monitor/datapreview",
             {
-                xAxis: xAxis,
+                xaxis: xaxis,
                 datasource: datasource,
                 pageId: pageId,
                 queryTemplate: queryTemplate
@@ -94,7 +94,7 @@ function saveQueryTemplate() {
     var queryTemplate = editor.getValue(),
         pageId = $('.J_pageId').val(),
         datasource = $('.J_datasource option:selected').val(),
-        xAxis = $('.J_xAxis').val(),
+        xaxis = $('.J_xaxis').val(),
         action = "update";
 
     try {
@@ -105,7 +105,7 @@ function saveQueryTemplate() {
                 datasource: datasource,
                 pageId: pageId,
                 queryTemplate: queryTemplate,
-                xAxis: xAxis
+                xaxis: xaxis
             },
             function(data){
                 if (data.code != 200) {
